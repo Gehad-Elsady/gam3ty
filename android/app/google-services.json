@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "28845198054",
+    "project_id": "gam3ty-46268",
+    "storage_bucket": "gam3ty-46268.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28845198054:android:77af64006b60d957f6c927",
+        "android_client_info": {
+          "package_name": "com.example.gam3ty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMehW4JBniH1ai4MxluqWl9nSLqOCrQRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
