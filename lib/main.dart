@@ -1,6 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
+import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
+import 'package:gam3ty/Screens/student%20home/student_home.dart';
+import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
+import 'package:gam3ty/Screens/uni_screem.dart';
 import 'package:gam3ty/backend/firebase_options.dart';
 import 'package:gam3ty/Screens/home/home-screen.dart';
 import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
@@ -30,6 +35,11 @@ class MyApp extends StatelessWidget {
         SignUpScreen.routeName: (context) => SignUpScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         ProfileScreen.routeName: (context) => ProfileScreen(),
+        StudentHome.routeName: (context) => StudentHome(),
+        UniProfile.routeName: (context) => UniProfile(),
+        // UniInfo.routeName: (context) => const UniInfo(),
+        // SecondHomePart.routeName: (context) => SecondHomePart(),
+        SeedsScreen.routeName: (context) => SeedsScreen(),
       },
     );
   }

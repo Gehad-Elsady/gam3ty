@@ -266,6 +266,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         profileImage: _downloadURL ??
                             "", // Use existing URL if no image selected
                         id: FirebaseAuth.instance.currentUser!.uid,
+                        // selectedFieldOfStudy: "selectedFieldOfStudy" ?? '',
+                        // gpa: 5,
+                        // locationPreferences: "locationPreference",
                       );
                       ProfileFunction.addUserProfile(data);
                       firstName.clear();

@@ -3,15 +3,26 @@ import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   static const String routeName = 'signup-screen';
   SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
   final TextEditingController _usernameController = TextEditingController();
+  String? role;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +72,114 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 40),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: role == "University"
+                                        ? MaterialStateProperty.all(
+                                            Colors.blue[900])
+                                        : MaterialStateProperty.all(
+                                            Colors.transparent),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      role = "University";
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Icon(
+                                          Icons.admin_panel_settings_rounded,
+                                          size: 50,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          "University",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 40,
+                                ),
+                                ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: role == "Student"
+                                        ? MaterialStateProperty.all(
+                                            Colors.blue[900])
+                                        : MaterialStateProperty.all(
+                                            Colors.transparent),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      role = "Student";
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Icon(
+                                          Icons.person_2_rounded,
+                                          size: 50,
+                                          color: Colors.white,
+                                        ),
+                                        Text(
+                                          "Student",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 40),
+                            role == "University"
+                                ? DropdownButton(
+                                    items: [
+                                      DropdownMenuItem(
+                                        child: Text("Select Role"),
+                                        value: null,
+                                      ),
+                                      DropdownMenuItem(
+                                          child: Text("Teacher"),
+                                          value: "Teacher"),
+                                      DropdownMenuItem(
+                                          child: Text("Teacher"),
+                                          value: "Teacher"),
+                                      DropdownMenuItem(
+                                          child: Text("Teacher"),
+                                          value: "Teacher"),
+                                      DropdownMenuItem(
+                                          child: Text("Teacher"),
+                                          value: "Teacher"),
+                                      DropdownMenuItem(
+                                          child: Text("Teacher"),
+                                          value: "Teacher"),
+                                      DropdownMenuItem(
+                                          child: Text("Teacher"),
+                                          value: "Teacher"),
+                                    ],
+                                    onChanged: (value) {},
+                                  )
+                                : SizedBox(),
                             // Name Field
                             _buildInputField(
                               controller: _usernameController,
@@ -133,7 +252,9 @@ class SignUpScreen extends StatelessWidget {
                                         SnackBar(
                                             content:
                                                 Text('Failed to sign up')));
-                                  }, userName: _usernameController.text);
+                                  },
+                                      userName: _usernameController.text,
+                                      role: role!);
                                 }
                               },
                               style: ElevatedButton.styleFrom(

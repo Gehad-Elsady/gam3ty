@@ -1,99 +1,132 @@
 import 'package:flutter/material.dart';
+import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
+import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
+import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
 
-class SecondHomePart extends StatelessWidget {
+class SecondHomePart extends StatefulWidget {
+  // static const String routeName = 'second-home-part';
   const SecondHomePart({super.key});
 
   @override
+  State<SecondHomePart> createState() => _SecondHomePartState();
+}
+
+class _SecondHomePartState extends State<SecondHomePart> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  // @override
+  // void dispose() {
+  //   _scrollController.dispose();
+  //   super.dispose();
+  // }
+
+  void scrollLeft() {
+    _scrollController.animateTo(
+      _scrollController.offset - 400,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void scrollRight() {
+    _scrollController.animateTo(
+      _scrollController.offset + 400,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Widget buildImageCard(
+    String? imagePath,
+  ) {
+    return SizedBox(
+      height: 300,
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 4,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: imagePath != null && imagePath.isNotEmpty
+              ? Image.network(imagePath, fit: BoxFit.cover)
+              : const Icon(Icons.image, size: 150),
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final ScrollController _scrollController = ScrollController();
+    return StreamBuilder(
+      stream: AddUniBack.getUniStream(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Center(child: Text('Error loading data'));
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text('No data available'));
+        }
 
-    void scrollLeft() {
-      _scrollController.animateTo(
-        _scrollController.offset - 400,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
+        var universities = snapshot.data!;
 
-    void scrollRight() {
-      _scrollController.animateTo(
-        _scrollController.offset + 400,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-
-    Widget buildImageCard(String imagePath, {BoxFit fit = BoxFit.contain}) {
-      return SizedBox(
-        height: 300,
-        // width: 250,
-        child: Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          elevation: 4,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              imagePath,
-              fit: fit,
+        return Stack(
+          children: [
+            SizedBox(
+              height: 300, // Fixed height for the ListView
+              child: ListView.builder(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                itemCount: universities.length,
+                itemBuilder: (context, index) {
+                  var uni = universities[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UniInfo(
+                                    arguments: universities[index],
+                                  )));
+                    },
+                    child: buildImageCard(
+                      uni.image,
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ),
-      );
-    }
-
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          controller: _scrollController,
-          child: Row(
-            children: [
-              buildImageCard("assets/images/جامعة-الجلالة.png"),
-              buildImageCard(
-                "assets/images/جامعة-شرم-الشيخ-كل-ما-تحتاج-معرفته-عنها.jpg",
-                fit: BoxFit.contain,
+            Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              child: IconButton(
+                icon:
+                    const Icon(Icons.arrow_left, size: 50, color: Colors.black),
+                onPressed: scrollLeft,
               ),
-              buildImageCard("assets/images/logoun.jpg"),
-              buildImageCard("assets/images/images.jpg"),
-              buildImageCard("assets/images/Helwan_University_Logo.jpg"),
-              buildImageCard(
-                "assets/images/20170618213743!شعار_جامعة_القاهرة_الجديد.jpg",
+            ),
+            Positioned(
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_right,
+                    size: 50, color: Colors.black),
+                onPressed: scrollRight,
               ),
-              buildImageCard("assets/images/images.png"),
-              buildImageCard("assets/images/october-6-university-1.png"),
-              buildImageCard("assets/images/Ain_Shams_logo.png"),
-              buildImageCard("assets/images/ImageHandler.png"),
-              buildImageCard("assets/images/ImageHandler (1).png"),
-              buildImageCard("assets/images/ImageHandler (2).png"),
-              buildImageCard("assets/images/ImageHandler (3).png"),
-              buildImageCard(
-                "assets/images/AU+REC+logos+-+2022-03-30T152444.942.png",
-              ),
-            ],
-          ),
-        ),
-        Positioned(
-          left: 0,
-          top: 0,
-          bottom: 0,
-          child: IconButton(
-            icon: const Icon(Icons.arrow_left, size: 50, color: Colors.black),
-            onPressed: scrollLeft,
-          ),
-        ),
-        Positioned(
-          right: 0,
-          top: 0,
-          bottom: 0,
-          child: IconButton(
-            icon: const Icon(Icons.arrow_right, size: 50, color: Colors.black),
-            onPressed: scrollRight,
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
-import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
-import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/Screens/home/widgets/home-first-part.dart';
-import 'package:gam3ty/Widgets/mydevider.dart';
 import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
-import 'package:gam3ty/Screens/welcom/widgets/tail_part_kome.dart';
+import 'package:gam3ty/Screens/uni_screem.dart';
 import 'package:gam3ty/Screens/welcom/wellcome-screen.dart';
+import 'package:gam3ty/Screens/welcom/widgets/tail_part_kome.dart';
+import 'package:gam3ty/Widgets/mydevider.dart';
+import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/test.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
-  static const String routeName = 'home-screen';
-  const HomeScreen({super.key});
+class StudentHome extends StatelessWidget {
+  static const String routeName = 'student-home';
+  const StudentHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -54,7 +56,11 @@ class HomeScreen extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, UniProfile.routeName);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddUniScreen(),
+                      ));
                 },
                 child: Text(
                   'University',
@@ -67,11 +73,7 @@ class HomeScreen extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => UploadImageScreen(),
-                      ));
+                  Navigator.pushNamed(context, SeedsScreen.routeName);
                 },
                 child: Text(
                   'College',
@@ -82,19 +84,19 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     Navigator.pushNamed(context, ProfileScreen.routeName);
-              //   },
-              //   child: Text(
-              //     'Profile',
-              //     style: GoogleFonts.domine(
-              //       fontSize: 20,
-              //       color: Colors.black,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, ProfileScreen.routeName);
+                },
+                child: Text(
+                  'Profile',
+                  style: GoogleFonts.domine(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               TextButton(
                 onPressed: () {
                   // Navigator.pushReplacementNamed(context, WellcomeScreen.routeName);

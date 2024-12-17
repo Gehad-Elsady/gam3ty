@@ -57,9 +57,8 @@ class HomefirstPart extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'We’re here to help you find the perfect college based on your preferences.\n'
-                        'Explore universities, their colleges, and discover the best options for your aspirations.\n'
-                        'Let’s make informed choices together for a bright future!',
+                        'That is the Admin university page that you can manage your university from here.\n'
+                        "Add college to your University and manage it from here.",
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 18,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gam3ty/Screens/student%20home/student_home.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/Screens/home/home-screen.dart';
 import 'package:gam3ty/Screens/Auth/signup/signup-screen.dart';
@@ -40,7 +41,7 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -155,12 +156,52 @@ class LoginScreen extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                             AuthFunctions.Login(
                                 _emailController.text, _passwordController.text,
-                                onSuccess: () {
-                              Navigator.pushReplacementNamed(
-                                  context, HomeScreen.routeName);
+                                onSuccess: () async {
+                              // Fetch user data (ensure it is an async function if needed)
+                              final userData =
+                                  await AuthFunctions.readUserData();
+
+                              // Check user role and navigate accordingly
+                              if (userData!.role == 'Student') {
+                                Navigator.pushReplacementNamed(
+                                    context, StudentHome.routeName);
+                              } else if (userData.role == 'University') {
+                                Navigator.pushReplacementNamed(
+                                    context, HomeScreen.routeName);
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                        title: Text("Error"),
+                                        content: Text("Invalid user role"),
+                                        actions: [
+                                          TextButton(
+                                              child: Text("OK"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              }),
+                                        ]);
+                                  },
+                                );
+                              }
                             }, onError: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Login failed")));
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                      title: Text("Error"),
+                                      content:
+                                          Text("Invalid email or password"),
+                                      actions: [
+                                        TextButton(
+                                            child: Text("OK"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            }),
+                                      ]);
+                                },
+                              );
                             });
                           }
                         },

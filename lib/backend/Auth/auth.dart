@@ -6,6 +6,7 @@ class AuthFunctions {
   static SignUp(String emailAddress, String password,
       {required Function onSuccess,
       required Function onError,
+      required String role,
       required String userName}) async {
     try {
       final credential =
@@ -19,6 +20,7 @@ class AuthFunctions {
         email: emailAddress,
         name: userName,
         id: credential.user!.uid,
+        role: role,
       );
       addUser(userModel);
 
@@ -67,7 +69,7 @@ class AuthFunctions {
         onError('Email not verified. Please verify your email.');
       }
     } on FirebaseAuthException catch (e) {
-      onError(e.message);
+      onError();
     }
   }
 
