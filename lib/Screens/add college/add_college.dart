@@ -3,33 +3,35 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
+import 'package:gam3ty/Screens/add%20college/model/college_model.dart';
 import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
+import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AddUniScreen extends StatefulWidget {
-  const AddUniScreen({super.key});
+class AddCollegeScreen extends StatefulWidget {
+  const AddCollegeScreen({super.key});
 
   @override
-  State<AddUniScreen> createState() => _AddUniScreenState();
+  State<AddCollegeScreen> createState() => _AddCollegeScreenState();
 }
 
-class _AddUniScreenState extends State<AddUniScreen> {
+class _AddCollegeScreenState extends State<AddCollegeScreen> {
   int _currentStep = 0;
 
   // Controllers for text fields
   final TextEditingController idController = TextEditingController();
-  final TextEditingController uinNameArController = TextEditingController();
-  final TextEditingController uinNameEnController = TextEditingController();
+  final TextEditingController uinIdController = TextEditingController();
+  final TextEditingController collegeNameArController = TextEditingController();
+  final TextEditingController collegeNameEnController = TextEditingController();
   final TextEditingController establishDateController = TextEditingController();
-  final TextEditingController numberOfCollegesController =
+  final TextEditingController numberOfAcademiesYearsController =
       TextEditingController();
-  final TextEditingController numberOfStudentsController =
+  final TextEditingController TuitionFeesController = TextEditingController();
+  // final TextEditingController numberOfTeachersController =
+  //     TextEditingController();
+  final TextEditingController collegePresidentArController =
       TextEditingController();
-  final TextEditingController numberOfTeachersController =
-      TextEditingController();
-  final TextEditingController universityPresidentArController =
-      TextEditingController();
-  final TextEditingController universityPresidentEnController =
+  final TextEditingController collegePresidentEnController =
       TextEditingController();
   final TextEditingController addressArController = TextEditingController();
   final TextEditingController addressEnController = TextEditingController();
@@ -47,8 +49,10 @@ class _AddUniScreenState extends State<AddUniScreen> {
   final List<String> advantagesEn = [];
   final List<String> disadvantagesAr = [];
   final List<String> disadvantagesEn = [];
-  final List<String> allowCitiesAr = [];
-  final List<String> allowCitiesEn = [];
+  final List<String> careerOpportunitiesArList = [];
+  final List<String> careerOpportunitiesEnList = [];
+  final List<String> expectedJobsArList = [];
+  final List<String> expectedJobsEnList = [];
 
   final List<String> availableAdvantagesAr = [
     'سمعة أكاديمية قوية',
@@ -140,66 +144,170 @@ class _AddUniScreenState extends State<AddUniScreen> {
     'Communication issues between students and professors'
   ];
 
-  final List<String> availableCitiesAr = [
-    'القاهرة',
-    'الإسكندرية',
-    'الجيزة',
-    'الشرقية',
-    'الدقهلية',
-    'قنا',
-    'المنوفية',
-    'سوهاج',
-    'أسوان',
-    'الفيوم',
-    'البحر الأحمر',
-    'كفر الشيخ',
-    'المنيا',
-    'الاسماعيلية',
-    'بني سويف',
-    'الغربية',
-    'دمياط',
-    'الوادي الجديد',
-    'شمال سيناء',
-    'جنوب سيناء',
-    'السويس',
-    'الأقصر',
-    'بورسعيد',
-    'حلوان',
-    'مطروح',
-    'شبين الكوم',
-    'دمنهور',
-    'أسيوط'
+  final List<String> availableCareerOpportunitiesAr = [
+    'فرص عمل في كبرى الشركات العالمية',
+    'تدريب عملي مدفوع الأجر',
+    'إمكانية الحصول على شهادات مهنية معتمدة',
+    'برامج تدريبية متخصصة',
+    'فرص للبحث والتطوير في مختلف المجالات',
+    'إمكانية العمل في مؤسسات حكومية ودولية',
+    'فرص ريادة الأعمال وإنشاء المشاريع الخاصة',
+    'شراكات مع شركات عالمية للتوظيف المباشر',
+    'إمكانية العمل عن بعد مع شركات دولية',
+    'فرص للتدريس في الجامعات والمعاهد',
+    'دعم للخريجين في البحث عن وظائف',
+    'فرص للانضمام إلى برامج الدراسات العليا',
+    'شبكة علاقات مهنية واسعة مع أرباب العمل',
+    'فرص تدريبية في مجالات تقنية متقدمة',
+    'إمكانية تطوير المهارات القيادية والإدارية',
+    'فرص للالتحاق ببرامج التبادل الوظيفي',
+    'دعم لتأسيس الشركات الناشئة',
+    'فرص عمل في قطاعات متعددة مثل التكنولوجيا، الطب، والهندسة',
+    'برامج تأهيلية لسوق العمل',
+    'فرص للتوظيف بدوام جزئي أثناء الدراسة'
   ];
 
-  final List<String> availableCitiesEn = [
-    'Cairo',
-    'Alexandria',
-    'Giza',
-    'Sharqia',
-    'Dakahlia',
-    'Qena',
-    'Menoufia',
-    'Sohag',
-    'Aswan',
-    'Fayoum',
-    'Red Sea',
-    'Kafr El Sheikh',
-    'Minya',
-    'Ismailia',
-    'Beni Suef',
-    'Gharbia',
-    'Damietta',
-    'New Valley',
-    'North Sinai',
-    'South Sinai',
-    'Suez',
-    'Luxor',
-    'Port Said',
-    'Helwan',
-    'Matrouh',
-    'Shebin El Kom',
-    'Damanhour',
-    'Assiut'
+  final List<String> availableCareerOpportunitiesEn = [
+    'Job opportunities in top global companies',
+    'Paid internships',
+    'Possibility of obtaining certified professional qualifications',
+    'Specialized training programs',
+    'Opportunities for research and development in various fields',
+    'Employment opportunities in government and international organizations',
+    'Entrepreneurial opportunities and startup creation',
+    'Partnerships with global companies for direct employment',
+    'Remote work opportunities with international firms',
+    'Teaching opportunities at universities and institutes',
+    'Graduate support in job searching',
+    'Opportunities to join postgraduate programs',
+    'Extensive professional networking with employers',
+    'Internship opportunities in advanced technology fields',
+    'Opportunities to develop leadership and managerial skills',
+    'Opportunities to participate in job exchange programs',
+    'Support for establishing startups',
+    'Job opportunities in multiple sectors such as technology, medicine, and engineering',
+    'Career preparation programs',
+    'Part-time job opportunities during studies'
+  ];
+
+  final List<String> expectedJobsAr = [
+    'مهندس برمجيات',
+    'طبيب',
+    'محاسب',
+    'محلل بيانات',
+    'مستشار قانوني',
+    'مدير مشاريع',
+    'مطور ذكاء اصطناعي',
+    'مدير تسويق رقمي',
+    'أخصائي موارد بشرية',
+    'مهندس ميكانيكي',
+    'مهندس كهربائي',
+    'محلل أعمال',
+    'عالم بيانات',
+    'مصمم جرافيك',
+    'مطور تطبيقات الهاتف المحمول',
+    'مهندس مدني',
+    'مهندس معماري',
+    'أخصائي أمن سيبراني',
+    'كاتب محتوى',
+    'مترجم',
+    'طبيب أسنان',
+    'صيدلي',
+    'ممرض',
+    'أخصائي تغذية',
+    'مدير مالي',
+    'خبير تجارة إلكترونية',
+    'مدير سلسلة التوريد',
+    'محلل استثمار',
+    'مدرب تطوير شخصي',
+    'خبير تحسين محركات البحث (SEO)',
+    'مهندس ذكاء اصطناعي',
+    'خبير تعلم آلي',
+    'مخرج أفلام',
+    'مدير إنتاج',
+    'مصمم تجربة المستخدم (UX)',
+    'مصمم واجهة المستخدم (UI)',
+    'مهندس صوت',
+    'مهندس طيران',
+    'مدير علاقات عامة',
+    'أخصائي شبكات',
+    'محلل نظم معلومات',
+    'خبير بيئي',
+    'باحث علمي',
+    'مدير مشتريات',
+    'مصور فوتوغرافي',
+    'مدير تطوير الأعمال',
+    'صحفي',
+    'مدرب رياضي',
+    'أخصائي نفسي',
+    'مدرس لغات',
+    'فني مختبر طبي',
+    'خبير أمن معلومات',
+    'مطور بلوك تشين',
+    'خبير تجارة دولية',
+    'مستشار تعليمي',
+    'طيار',
+    'خبير لوجستيات'
+  ];
+
+  final List<String> expectedJobsEn = [
+    'Software Engineer',
+    'Doctor',
+    'Accountant',
+    'Data Analyst',
+    'Legal Consultant',
+    'Project Manager',
+    'AI Developer',
+    'Digital Marketing Manager',
+    'HR Specialist',
+    'Mechanical Engineer',
+    'Electrical Engineer',
+    'Business Analyst',
+    'Data Scientist',
+    'Graphic Designer',
+    'Mobile App Developer',
+    'Civil Engineer',
+    'Architect',
+    'Cybersecurity Specialist',
+    'Content Writer',
+    'Translator',
+    'Dentist',
+    'Pharmacist',
+    'Nurse',
+    'Nutritionist',
+    'Financial Manager',
+    'E-commerce Specialist',
+    'Supply Chain Manager',
+    'Investment Analyst',
+    'Personal Development Coach',
+    'SEO Specialist',
+    'AI Engineer',
+    'Machine Learning Expert',
+    'Film Director',
+    'Production Manager',
+    'UX Designer',
+    'UI Designer',
+    'Sound Engineer',
+    'Aerospace Engineer',
+    'Public Relations Manager',
+    'Network Specialist',
+    'Information Systems Analyst',
+    'Environmental Scientist',
+    'Research Scientist',
+    'Procurement Manager',
+    'Photographer',
+    'Business Development Manager',
+    'Journalist',
+    'Sports Coach',
+    'Psychologist',
+    'Language Teacher',
+    'Medical Laboratory Technician',
+    'Information Security Expert',
+    'Blockchain Developer',
+    'International Trade Specialist',
+    'Educational Consultant',
+    'Pilot',
+    'Logistics Specialist'
   ];
 
   // For image upload
@@ -356,26 +464,39 @@ class _AddUniScreenState extends State<AddUniScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                _buildTextField(
-                  controller: idController,
-                  label: 'University ID',
-                  prefixIcon: Icons.numbers,
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildTextField(
+                        controller: uinIdController,
+                        label: 'University ID',
+                        prefixIcon: Icons.numbers,
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildTextField(
+                        controller: idController,
+                        label: 'College ID',
+                        prefixIcon: Icons.numbers,
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(
                       child: _buildTextField(
-                        controller: uinNameArController,
-                        label: 'University Name (AR)',
+                        controller: collegeNameArController,
+                        label: 'College Name (AR)',
                         prefixIcon: Icons.school,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: _buildTextField(
-                        controller: uinNameEnController,
-                        label: 'University Name (EN)',
+                        controller: collegeNameEnController,
+                        label: 'College Name (EN)',
                         prefixIcon: Icons.school_outlined,
                       ),
                     ),
@@ -401,31 +522,10 @@ class _AddUniScreenState extends State<AddUniScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildTextField(
-                        controller: numberOfCollegesController,
-                        label: 'Number of Colleges',
-                        prefixIcon: Icons.account_balance,
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _buildTextField(
-                        controller: numberOfStudentsController,
-                        label: 'Number of Students',
-                        prefixIcon: Icons.people,
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 16),
                 _buildTextField(
-                  controller: numberOfTeachersController,
-                  label: 'Number of Teachers',
+                  controller: TuitionFeesController,
+                  label: 'Tuition fees',
                   prefixIcon: Icons.person,
                   keyboardType: TextInputType.number,
                 ),
@@ -433,6 +533,13 @@ class _AddUniScreenState extends State<AddUniScreen> {
                 _buildTextField(
                   controller: acceptedPercentageController,
                   label: 'Accepted Percentage',
+                  prefixIcon: Icons.percent,
+                  keyboardType: TextInputType.number,
+                ),
+                const SizedBox(height: 16),
+                _buildTextField(
+                  controller: numberOfAcademiesYearsController,
+                  label: 'Number of Academic years',
                   prefixIcon: Icons.percent,
                   keyboardType: TextInputType.number,
                 ),
@@ -486,7 +593,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: uniLinkController,
-                  label: 'University Website',
+                  label: 'College Website',
                   prefixIcon: Icons.link,
                   keyboardType: TextInputType.url,
                 ),
@@ -508,16 +615,16 @@ class _AddUniScreenState extends State<AddUniScreen> {
                   children: [
                     Expanded(
                       child: _buildTextField(
-                        controller: universityPresidentArController,
-                        label: 'University President (AR)',
+                        controller: collegePresidentArController,
+                        label: 'College President (AR)',
                         prefixIcon: Icons.person_2,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: _buildTextField(
-                        controller: universityPresidentEnController,
-                        label: 'University President (EN)',
+                        controller: collegePresidentEnController,
+                        label: 'College President (EN)',
                         prefixIcon: Icons.person_2_outlined,
                       ),
                     ),
@@ -598,11 +705,17 @@ class _AddUniScreenState extends State<AddUniScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                _buildDropdown('Career Opportunities (AR)',
+                    careerOpportunitiesArList, availableCareerOpportunitiesAr),
+                const SizedBox(height: 16),
+                _buildDropdown('Career Opportunities (EN)',
+                    careerOpportunitiesEnList, availableCareerOpportunitiesEn),
+                const SizedBox(height: 24),
                 _buildDropdown(
-                    'Allowed Cities (AR)', allowCitiesAr, availableCitiesAr),
+                    'Expected Jobs (AR)', expectedJobsArList, expectedJobsAr),
                 const SizedBox(height: 16),
                 _buildDropdown(
-                    'Allowed Cities (EN)', allowCitiesEn, availableCitiesEn),
+                    'Expected Jobs (EN)', expectedJobsEnList, expectedJobsEn),
                 const SizedBox(height: 24),
                 Center(
                   child: Column(
@@ -759,7 +872,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Add University',
+          'Add College',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -788,14 +901,13 @@ class _AddUniScreenState extends State<AddUniScreen> {
               // Check if all controllers are not empty
               if (_imageURL != null &&
                   idController.text.isNotEmpty &&
-                  uinNameArController.text.isNotEmpty &&
-                  uinNameEnController.text.isNotEmpty &&
+                  collegeNameArController.text.isNotEmpty &&
+                  collegeNameEnController.text.isNotEmpty &&
                   establishDateController.text.isNotEmpty &&
-                  numberOfCollegesController.text.isNotEmpty &&
-                  numberOfStudentsController.text.isNotEmpty &&
-                  numberOfTeachersController.text.isNotEmpty &&
-                  universityPresidentArController.text.isNotEmpty &&
-                  universityPresidentEnController.text.isNotEmpty &&
+                  uinIdController.text.isNotEmpty &&
+                  TuitionFeesController.text.isNotEmpty &&
+                  collegePresidentArController.text.isNotEmpty &&
+                  collegePresidentEnController.text.isNotEmpty &&
                   addressArController.text.isNotEmpty &&
                   addressEnController.text.isNotEmpty &&
                   contactNumberController.text.isNotEmpty &&
@@ -805,23 +917,25 @@ class _AddUniScreenState extends State<AddUniScreen> {
                   descriptionArController.text.isNotEmpty &&
                   descriptionEnController.text.isNotEmpty &&
                   studyingTypeController.text.isNotEmpty &&
+                  numberOfAcademiesYearsController.text.isNotEmpty &&
                   advantagesAr.isNotEmpty &&
                   advantagesEn.isNotEmpty &&
                   disadvantagesAr.isNotEmpty &&
                   disadvantagesEn.isNotEmpty &&
-                  allowCitiesAr.isNotEmpty &&
-                  allowCitiesEn.isNotEmpty) {
+                  careerOpportunitiesArList.isNotEmpty &&
+                  careerOpportunitiesEnList.isNotEmpty &&
+                  expectedJobsArList.isNotEmpty &&
+                  expectedJobsEnList.isNotEmpty) {
                 // If all controllers have data, submit the data
-                AddUinModel data = AddUinModel(
+                CollegeModel data = CollegeModel(
                   id: idController.text,
-                  uinNameAr: uinNameArController.text,
-                  uinNameEn: uinNameEnController.text,
+                  uinId: uinIdController.text,
+                  nameAr: collegeNameArController.text,
+                  nameEn: collegeNameEnController.text,
                   establishDate: establishDateController.text,
-                  numberOfColleges: numberOfCollegesController.text,
-                  numberOfStudents: numberOfStudentsController.text,
-                  numberOfTeachers: numberOfTeachersController.text,
-                  universityPresidentAr: universityPresidentArController.text,
-                  universityPresidentEn: universityPresidentEnController.text,
+                  Tuitionfees: TuitionFeesController.text,
+                  collegePresidentAr: collegePresidentArController.text,
+                  collegePresidentEn: collegePresidentEnController.text,
                   addressAr: addressArController.text,
                   addressEn: addressEnController.text,
                   contactNumber: contactNumberController.text,
@@ -831,45 +945,24 @@ class _AddUniScreenState extends State<AddUniScreen> {
                   descriptionAr: descriptionArController.text,
                   descriptionEn: descriptionEnController.text,
                   studyingType: studyingTypeController.text,
+                  academicYear: numberOfAcademiesYearsController.text,
                   advantagesAr: advantagesAr,
                   advantagesEn: advantagesEn,
                   disadvantagesAr: disadvantagesAr,
                   disadvantagesEn: disadvantagesEn,
-                  allowCitiesAr: allowCitiesAr,
-                  allowCitiesEn: allowCitiesEn,
+                  careerOpportunitiesArList: careerOpportunitiesArList,
+                  careerOpportunitiesEnList: careerOpportunitiesEnList,
+                  expectedJobsAr: expectedJobsArList,
+                  expectedJobsEn: expectedJobsEnList,
                   image: _imageURL!,
                 );
-                AddUniBack.addUniData(data);
+                AddCollegeBack.addCollegeData(data);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('University data submitted successfully!'),
                     backgroundColor: Colors.green,
                   ),
                 );
-                idController.clear();
-                uinNameArController.clear();
-                uinNameEnController.clear();
-                establishDateController.clear();
-                numberOfCollegesController.clear();
-                numberOfStudentsController.clear();
-                numberOfTeachersController.clear();
-                universityPresidentArController.clear();
-                universityPresidentEnController.clear();
-                addressArController.clear();
-                addressEnController.clear();
-                contactNumberController.clear();
-                emailController.clear();
-                acceptedPercentageController.clear();
-                uniLinkController.clear();
-                descriptionArController.clear();
-                descriptionEnController.clear();
-                studyingTypeController.clear();
-                advantagesAr.clear();
-                advantagesEn.clear();
-                disadvantagesAr.clear();
-                disadvantagesEn.clear();
-                allowCitiesAr.clear();
-                allowCitiesEn.clear();
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

@@ -40,6 +40,8 @@ class AddUniBack {
           addressAr: data['addressAr'] ?? 'No Name',
           addressEn: data['addressEn'] ?? 'No Name',
           contactNumber: data['contactNumber'] ?? 'No Name',
+          latitude: data['latitude'],
+          longitude: data['longitude'],
           email: data['email'] ?? 'No Name',
           acceptedPercentage: data['acceptedPercentage']?.toString() ?? "0",
           uniLink: data['uniLink'] ?? 'No Name',

@@ -24,6 +24,8 @@ class AddUinModel {
   List<String> disadvantagesEn; //
   List<String> allowCitiesAr; //
   List<String> allowCitiesEn; //
+  String? latitude;
+  String? longitude;
 
   AddUinModel({
     required this.id,
@@ -51,6 +53,8 @@ class AddUinModel {
     required this.disadvantagesEn,
     required this.allowCitiesAr,
     required this.allowCitiesEn,
+    this.latitude,
+    this.longitude,
   });
 
   factory AddUinModel.fromJson(Map<String, dynamic> json) {
@@ -74,6 +78,8 @@ class AddUinModel {
       descriptionAr: json['descriptionAr'],
       descriptionEn: json['descriptionEn'],
       studyingType: json['studyingType'],
+      latitude: json['latitude'],
+      longitude: json['longitude'],
       advantagesAr: List<String>.from(json['advantagesAr']),
       advantagesEn: List<String>.from(json['advantagesEn']),
       disadvantagesAr: List<String>.from(json['disadvantagesAr']),
@@ -103,6 +109,8 @@ class AddUinModel {
       'uniLink': uniLink,
       'descriptionAr': descriptionAr,
       'descriptionEn': descriptionEn,
+      'longitude': longitude,
+      'latitude': latitude,
       'studyingType': studyingType,
       'advantagesAr': advantagesAr,
       'advantagesEn': advantagesEn,
@@ -113,36 +121,36 @@ class AddUinModel {
     };
   }
 
-  @override
-  String toString() {
-    return '''
-AddUinModel(
-  id: $id,
-  uinNameAr: $uinNameAr,
-  uinNameEn: $uinNameEn,
-  establishDate: $establishDate,
-  numberOfColleges: $numberOfColleges,
-  numberOfStudents: $numberOfStudents,
-  numberOfTeachers: $numberOfTeachers,
-  universityPresidentAr: $universityPresidentAr,
-  universityPresidentEn: $universityPresidentEn,
-  addressAr: $addressAr,
-  addressEn: $addressEn,
-  contactNumber: $contactNumber,
-  email: $email,
-  image: $image,
-  acceptedPercentage: $acceptedPercentage,
-  uniLink: $uniLink,
-  descriptionAr: $descriptionAr,
-  descriptionEn: $descriptionEn,
-  studyingType: $studyingType,
-  advantagesAr: ${advantagesAr.join(', ')},
-  advantagesEn: ${advantagesEn.join(', ')},
-  disadvantagesAr: ${disadvantagesAr.join(', ')},
-  disadvantagesEn: ${disadvantagesEn.join(', ')},
-  allowCitiesAr: ${allowCitiesAr.join(', ')},
-  allowCitiesEn: ${allowCitiesEn.join(', ')}
-)
-''';
-  }
+//   String toString() {
+//     return '''
+// AddUinModel(
+//   id: $id,
+//   uinNameAr: $uinNameAr,
+//   uinNameEn: $uinNameEn,
+//   establishDate: $establishDate,
+//   numberOfColleges: $numberOfColleges,
+//   numberOfStudents: $numberOfStudents,
+//   numberOfTeachers: $numberOfTeachers,
+//   universityPresidentAr: $universityPresidentAr,
+//   universityPresidentEn: $universityPresidentEn,
+//   addressAr: $addressAr,
+//   addressEn: $addressEn,
+//   contactNumber: $contactNumber,
+//   email: $email,
+//   image: $image,
+//   acceptedPercentage: $acceptedPercentage,
+//   uniLink: $uniLink,
+//   descriptionAr: $descriptionAr,
+//   descriptionEn: $descriptionEn,
+//   studyingType: $studyingType,
+//   advantagesAr: ${advantagesAr.join(', ')},
+//   advantagesEn: ${advantagesEn.join(', ')},
+//   disadvantagesAr: ${disadvantagesAr.join(', ')},
+//   disadvantagesEn: ${disadvantagesEn.join(', ')},
+//   allowCitiesAr: ${allowCitiesAr.join(', ')},
+//   allowCitiesEn: ${allowCitiesEn.join(', ')}
+//   latitude: $latitude,
+//   longitude: $longitude,
+// )
+// ''';
 }

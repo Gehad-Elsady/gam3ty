@@ -90,12 +90,14 @@ class _SecondHomePartState extends State<SecondHomePart> {
                   var uni = universities[index];
                   return InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UniInfo(
-                                    arguments: universities[index],
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => UniInfo(
+                      //               arguments: universities[index],
+                      //             )));
+                      Navigator.pushNamed(context, UniInfo.routeName,
+                          arguments: uni);
                     },
                     child: buildImageCard(
                       uni.image,

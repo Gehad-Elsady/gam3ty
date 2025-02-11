@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
+import 'package:gam3ty/Screens/uni_screem.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/Screens/home/widgets/home-first-part.dart';
 import 'package:gam3ty/Widgets/mydevider.dart';
@@ -70,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UploadImageScreen(),
+                        builder: (context) => CollegeScreen(),
                       ));
                 },
                 child: Text(

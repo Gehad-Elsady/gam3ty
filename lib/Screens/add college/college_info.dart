@@ -1,65 +1,31 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
 import 'package:gam3ty/Screens/add%20college/add_college.dart';
+import 'package:gam3ty/Screens/add%20college/model/college_model.dart';
 import 'package:gam3ty/Screens/uni_location.dart';
-import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UniInfo extends StatefulWidget {
-  static const String routeName = 'uni-info';
+class CollegeInfo extends StatefulWidget {
+  static const String routeName = 'College-info';
   // final AddUinModel arguments;
 
-  const UniInfo({super.key});
+  const CollegeInfo({super.key});
 
   @override
-  State<UniInfo> createState() => _UniInfoState();
+  State<CollegeInfo> createState() => _CollegeInfoState();
 }
 
-class _UniInfoState extends State<UniInfo> {
+class _CollegeInfoState extends State<CollegeInfo> {
   @override
   Widget build(BuildContext context) {
-    var model = ModalRoute.of(context)?.settings.arguments as AddUinModel;
+    var model = ModalRoute.of(context)?.settings.arguments as CollegeModel;
 
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Colors.black),
-          ),
-        ),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => AddCollegeScreen(),
-          );
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Add College',
-                style: GoogleFonts.domine(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                )),
-            Icon(
-              Icons.add_circle_outline_sharp,
-              size: 50,
-              color: Colors.black,
-            ),
-          ],
-        ),
-      ),
       appBar: AppBar(
         title: Text(
-          model.uinNameEn,
+          model.nameEn,
           style: GoogleFonts.domine(
             fontSize: 32,
             color: Colors.black,
@@ -88,102 +54,9 @@ class _UniInfoState extends State<UniInfo> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Horizontal Scrollable Row for dynamic content
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(width: 80),
-                      // University Student Section
-                      Column(
-                        children: [
-                          ImageIcon(
-                            AssetImage("assets/images/graduation.png"),
-                            size: 200,
-                          ),
-                          SizedBox(height: 18),
-                          Text(
-                            "University Student",
-                            style: GoogleFonts.domine(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            model.numberOfStudents,
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 100),
-
-                      // Faculty Member Section
-                      Column(
-                        children: [
-                          ImageIcon(
-                            AssetImage("assets/images/teacher.png"),
-                            size: 200,
-                          ),
-                          SizedBox(height: 18),
-                          Text(
-                            "Faculty Member",
-                            style: GoogleFonts.domine(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            model.numberOfTeachers,
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 100),
-
-                      // University College Section
-                      Column(
-                        children: [
-                          ImageIcon(
-                            AssetImage("assets/images/college.png"),
-                            size: 200,
-                          ),
-                          SizedBox(height: 18),
-                          Text(
-                            "University College",
-                            style: GoogleFonts.domine(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            model.numberOfColleges,
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  Spacer(),
 
                   // Container for the Image
                   Container(
@@ -242,14 +115,14 @@ class _UniInfoState extends State<UniInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("Universty President:",
+                          Text("College Dean:",
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.universityPresidentEn,
+                          Text(model.collegePresidentEn,
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -274,7 +147,7 @@ class _UniInfoState extends State<UniInfo> {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Text("University Massage:",
+                      Text("College Massage:",
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -360,30 +233,8 @@ class _UniInfoState extends State<UniInfo> {
                               )),
                         ],
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text("Areas you can join:",
-                              style: GoogleFonts.domine(
-                                fontSize: 25,
-                                color: Colors.black,
-                                fontWeight:
-                                    FontWeight.bold, // Bold for the label
-                              )),
-                          const SizedBox(width: 8),
-                          Text(
-                              model.allowCitiesEn
-                                  .join(", "), // Join cities if it's a list
-                              style: GoogleFonts.domine(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight:
-                                    FontWeight.bold, // Bold for the cities too
-                              )),
-                        ],
-                      ),
+                      const SizedBox(height: 16),
 
-                      const SizedBox(height: 8),
                       Row(
                         children: [
                           Text("Studying Type:",
@@ -400,6 +251,121 @@ class _UniInfoState extends State<UniInfo> {
                               )),
                         ],
                       ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Text("Academic Years:",
+                              style: GoogleFonts.domine(
+                                fontSize: 25,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          const SizedBox(width: 8),
+                          Text(model.academicYear,
+                              style: GoogleFonts.domine(
+                                fontSize: 20,
+                                color: Colors.black,
+                              )),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Text("Tuition Fees: ",
+                              style: GoogleFonts.domine(
+                                fontSize: 25,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          const SizedBox(width: 8),
+                          Text(model.Tuitionfees,
+                              style: GoogleFonts.domine(
+                                fontSize: 20,
+                                color: Colors.black,
+                              )),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Admission Information Cards
+              Card(
+                child: Container(
+                  padding: const EdgeInsets.all(
+                      16.0), // Padding around the entire container
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start, // Align text to the left
+                    children: [
+                      // Title Section
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 8.0), // Padding below the title
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Career Information & Job',
+                              style: GoogleFonts.domine(
+                                fontSize: 22,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Divider(
+                                thickness: 4,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Content Section
+                      const SizedBox(height: 8),
+                      Text("Career Opportunities:",
+                          style: GoogleFonts.domine(
+                            fontSize: 25,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold, // Bold for the label
+                          )),
+                      const SizedBox(width: 8),
+                      Text(
+                        model.careerOpportunitiesEnList
+                            .map((item) =>
+                                "• $item") // Add bullet point before each item
+                            .join("\n"), // Join each item with a newline
+                        style: GoogleFonts.domine(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold, // Bold for the items
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+                      Text("Expected Jobs: ",
+                          style: GoogleFonts.domine(
+                            fontSize: 25,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold, // Bold for the label
+                          )),
+                      const SizedBox(width: 8),
+                      Text(
+                        model.expectedJobsEn
+                            .map((item) =>
+                                "• $item") // Add bullet point before each item
+                            .join("\n"), // Join each item with a newline
+                        style: GoogleFonts.domine(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold, // Bold for the items
+                        ),
+                      ),
+
                       const SizedBox(height: 16),
                     ],
                   ),
@@ -595,20 +561,6 @@ class _UniInfoState extends State<UniInfo> {
                 ),
               ),
               SizedBox(height: 16),
-              CollegePart(
-                id: model.id,
-              ),
-              Card(
-                child: Container(
-                  height: 300,
-                  width: 500,
-                  padding: const EdgeInsets.all(
-                      16.0), // Padding around the entire container
-                  child: UniLocation(
-                      latitude: double.parse(model.latitude!),
-                      longitude: double.parse(model.longitude!)),
-                ),
-              ),
             ],
           ),
         ),

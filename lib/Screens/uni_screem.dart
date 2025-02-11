@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
+import 'package:gam3ty/Screens/add%20college/college_info.dart';
 import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
+import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SeedsScreen extends StatelessWidget {
+class CollegeScreen extends StatelessWidget {
   static const String routeName = 'seeds-screen';
-  const SeedsScreen({super.key});
+  const CollegeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class SeedsScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xFF56ab91),
-        title: Text('All Universitys',
+        title: Text('All Colleges',
             style: GoogleFonts.domine(
               fontSize: 32,
               color: Colors.black,
@@ -41,7 +43,7 @@ class SeedsScreen extends StatelessWidget {
                 SizedBox(height: 16),
                 // StreamBuilder for fetching services
                 StreamBuilder(
-                  stream: AddUniBack.getUniStream(),
+                  stream: AddCollegeBack.getAllCollegeStream(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
@@ -67,12 +69,15 @@ class SeedsScreen extends StatelessWidget {
                           final service = snapshot.data![index];
                           return GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => UniInfo(
-                                            arguments: service,
-                                          )));
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => UniInfo(
+                              //               arguments: service,
+                              //             )));
+                              Navigator.pushNamed(
+                                  context, CollegeInfo.routeName,
+                                  arguments: service);
                             },
                             child: Card(
                               shape: RoundedRectangleBorder(
@@ -89,16 +94,21 @@ class SeedsScreen extends StatelessWidget {
                                   children: [
                                     // Image section
                                     Expanded(
-                                      child: CachedNetworkImage(
-                                        imageUrl: service.image,
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
-                                        fit: BoxFit.fill,
-                                        width: double.infinity,
-                                      ),
-                                    ),
+                                        child: Image.network(
+                                      service.image,
+                                      fit: BoxFit.contain,
+                                    )),
+                                    // Expanded(
+                                    //   child: CachedNetworkImage(
+                                    //     imageUrl: service.image,
+                                    //     placeholder: (context, url) =>
+                                    //         CircularProgressIndicator(),
+                                    //     errorWidget: (context, url, error) =>
+                                    //         Icon(Icons.error),
+                                    //     fit: BoxFit.fill,
+                                    //     width: double.infinity,
+                                    //   ),
+                                    // ),
                                     // Text for name and price
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -107,7 +117,7 @@ class SeedsScreen extends StatelessWidget {
                                             CrossAxisAlignment.stretch,
                                         children: [
                                           Text(
-                                            service.uinNameEn,
+                                            service.nameEn,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,

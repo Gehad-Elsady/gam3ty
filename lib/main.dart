@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
+import 'package:gam3ty/Screens/add%20college/college_info.dart';
 import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
 import 'package:gam3ty/Screens/student%20home/student_home.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
@@ -37,9 +38,10 @@ class MyApp extends StatelessWidget {
         ProfileScreen.routeName: (context) => ProfileScreen(),
         StudentHome.routeName: (context) => StudentHome(),
         UniProfile.routeName: (context) => UniProfile(),
-        // UniInfo.routeName: (context) => const UniInfo(),
+        UniInfo.routeName: (context) => const UniInfo(),
         // SecondHomePart.routeName: (context) => SecondHomePart(),
-        SeedsScreen.routeName: (context) => SeedsScreen(),
+        CollegeScreen.routeName: (context) => CollegeScreen(),
+        CollegeInfo.routeName: (context) => CollegeInfo(),
       },
     );
   }

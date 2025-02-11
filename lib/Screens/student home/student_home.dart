@@ -73,7 +73,7 @@ class StudentHome extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, SeedsScreen.routeName);
+                  Navigator.pushNamed(context, CollegeScreen.routeName);
                 },
                 child: Text(
                   'College',
