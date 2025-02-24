@@ -54,6 +54,50 @@ class AddUniBack {
           disadvantagesEn: List<String>.from(data['disadvantagesEn'] ?? []),
           allowCitiesAr: List<String>.from(data['allowCitiesAr'] ?? []),
           allowCitiesEn: List<String>.from(data['allowCitiesEn'] ?? []),
+          uniType: data['uniType'] ?? 'No Name',
+        );
+      }).toList();
+    });
+  }
+
+  static Stream<List<AddUinModel>> getUniCategoryStream(String uniType) {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    return _firestore
+        .collection('Add-University')
+        .where('uniType', isEqualTo: uniType) // Filter universities
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs.map((doc) {
+        final data = doc.data();
+        return AddUinModel(
+          id: data['id'] ?? "no id",
+          image: data['image'] ?? 'default_image.png',
+          uinNameAr: data['uinNameAr'] ?? 'No Name',
+          uinNameEn: data['uinNameEn'] ?? 'No Name',
+          establishDate: data['establishDate']?.toString() ?? "0",
+          numberOfColleges: data['numberOfColleges']?.toString() ?? "0",
+          numberOfStudents: data['numberOfStudents']?.toString() ?? "0",
+          numberOfTeachers: data['numberOfTeachers']?.toString() ?? "0",
+          universityPresidentAr: data['universityPresidentAr'] ?? 'No Name',
+          universityPresidentEn: data['universityPresidentEn'] ?? 'No Name',
+          addressAr: data['addressAr'] ?? 'No Name',
+          addressEn: data['addressEn'] ?? 'No Name',
+          contactNumber: data['contactNumber'] ?? 'No Name',
+          latitude: data['latitude'],
+          longitude: data['longitude'],
+          email: data['email'] ?? 'No Name',
+          acceptedPercentage: data['acceptedPercentage']?.toString() ?? "0",
+          uniLink: data['uniLink'] ?? 'No Name',
+          descriptionAr: data['descriptionAr'] ?? 'No Name',
+          descriptionEn: data['descriptionEn'] ?? 'No Name',
+          studyingType: data['studyingType'] ?? 'No Name',
+          advantagesAr: List<String>.from(data['advantagesAr'] ?? []),
+          advantagesEn: List<String>.from(data['advantagesEn'] ?? []),
+          disadvantagesAr: List<String>.from(data['disadvantagesAr'] ?? []),
+          disadvantagesEn: List<String>.from(data['disadvantagesEn'] ?? []),
+          allowCitiesAr: List<String>.from(data['allowCitiesAr'] ?? []),
+          allowCitiesEn: List<String>.from(data['allowCitiesEn'] ?? []),
+          uniType: data['uniType'] ?? 'No Name',
         );
       }).toList();
     });

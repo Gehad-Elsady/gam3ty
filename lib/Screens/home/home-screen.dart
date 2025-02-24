@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
+import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
 import 'package:gam3ty/Screens/uni_screem.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
@@ -135,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                     HomefirstPart(),
                     MyDivider(text: "Our Universities"),
                     SizedBox(height: 20),
-                    SecondHomePart(),
+                    CategoryPart(),
                     SizedBox(height: 20),
                     TailPart()
                   ]))),

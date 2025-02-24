@@ -262,6 +262,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             ElevatedButton(
                 onPressed: () {
                   AddUinModel data = AddUinModel(
+                    uniType: "",
                     id: idController.text,
                     uinNameAr: uinNameArController.text,
                     uinNameEn: uinNameEnController.text,

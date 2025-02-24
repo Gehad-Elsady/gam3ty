@@ -1,21 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
-import 'package:gam3ty/Screens/add%20college/college_info.dart';
 import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
-import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CollegeScreen extends StatelessWidget {
-  static const String routeName = 'seeds-screen';
-  const CollegeScreen({super.key});
+class AllUinScreen extends StatelessWidget {
+  static const String routeName = 'all-uin-screen';
+  const AllUinScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('All Colleges',
+        title: Text('All Universities',
             style: GoogleFonts.domine(
               fontSize: 32,
               color: Colors.black,
@@ -44,7 +41,7 @@ class CollegeScreen extends StatelessWidget {
                 SizedBox(height: 16),
                 // StreamBuilder for fetching services
                 StreamBuilder(
-                  stream: AddCollegeBack.getAllCollegeStream(),
+                  stream: AddUniBack.getUniStream(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(child: CircularProgressIndicator());
@@ -76,8 +73,7 @@ class CollegeScreen extends StatelessWidget {
                               //         builder: (context) => UniInfo(
                               //               arguments: service,
                               //             )));
-                              Navigator.pushNamed(
-                                  context, CollegeInfo.routeName,
+                              Navigator.pushNamed(context, UniInfo.routeName,
                                   arguments: service);
                             },
                             child: Card(
@@ -118,7 +114,7 @@ class CollegeScreen extends StatelessWidget {
                                             CrossAxisAlignment.stretch,
                                         children: [
                                           Text(
-                                            service.nameEn,
+                                            service.uinNameEn,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,

@@ -26,7 +26,7 @@ class _UniInfoState extends State<UniInfo> {
     return Scaffold(
       floatingActionButton: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.red,
           padding: EdgeInsets.symmetric(horizontal: 16),
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -188,6 +188,7 @@ class _UniInfoState extends State<UniInfo> {
                   // Container for the Image
                   Container(
                     height: 500,
+                    width: 500,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -197,7 +198,7 @@ class _UniInfoState extends State<UniInfo> {
                           BorderRadius.circular(20), // Ensure matching radius
                       child: Image.network(
                         model.image,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   )

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
 import 'package:gam3ty/Screens/add%20college/college_info.dart';
+import 'package:gam3ty/Screens/home/widgets/all_uin_screen.dart';
+import 'package:gam3ty/Screens/home/widgets/category_screen.dart';
 import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
 import 'package:gam3ty/Screens/student%20home/student_home.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
         // SecondHomePart.routeName: (context) => SecondHomePart(),
         CollegeScreen.routeName: (context) => CollegeScreen(),
         CollegeInfo.routeName: (context) => CollegeInfo(),
+        CategoryScreen.routeName: (context) => CategoryScreen(),
+        AllUinScreen.routeName: (context) => const AllUinScreen(),
       },
     );
   }

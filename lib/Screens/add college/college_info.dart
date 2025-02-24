@@ -3,7 +3,6 @@ import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
 import 'package:gam3ty/Screens/add%20college/add_college.dart';
 import 'package:gam3ty/Screens/add%20college/model/college_model.dart';
-import 'package:gam3ty/Screens/uni_location.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,7 +20,6 @@ class _CollegeInfoState extends State<CollegeInfo> {
   @override
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as CollegeModel;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(

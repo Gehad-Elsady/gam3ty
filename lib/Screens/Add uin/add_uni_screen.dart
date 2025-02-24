@@ -49,6 +49,14 @@ class _AddUniScreenState extends State<AddUniScreen> {
   final List<String> disadvantagesEn = [];
   final List<String> allowCitiesAr = [];
   final List<String> allowCitiesEn = [];
+  String? selectedUniType;
+
+  final List<String> uniType = [
+    "Institutes",
+    "national university",
+    "Private universities",
+    "Government universities"
+  ];
 
   final List<String> availableAdvantagesAr = [
     'سمعة أكاديمية قوية',
@@ -387,6 +395,9 @@ class _AddUniScreenState extends State<AddUniScreen> {
                   label: 'Establish Date',
                   prefixIcon: Icons.calendar_today,
                 ),
+                const SizedBox(height: 16),
+                _buildDropdownField('University Type', uniType, selectedUniType,
+                    (value) => setState(() => selectedUniType = value)),
               ],
             ),
           ),
@@ -837,6 +848,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                   disadvantagesEn: disadvantagesEn,
                   allowCitiesAr: allowCitiesAr,
                   allowCitiesEn: allowCitiesEn,
+                  uniType: selectedUniType!,
                   image: _imageURL!,
                 );
                 AddUniBack.addUniData(data);
@@ -888,6 +900,53 @@ class _AddUniScreenState extends State<AddUniScreen> {
           onStepTapped: (step) => setState(() => _currentStep = step),
           steps: getSteps(),
         ),
+      ),
+    );
+  }
+
+  Widget _buildDropdownField(String label, List<String> items,
+      String? selectedValue, ValueChanged<String?> onChanged) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: DropdownButtonFormField<String>(
+        style: TextStyle(color: Colors.white, fontSize: 16),
+        dropdownColor: Color(0xff03045E),
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          // Define the border
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0), // Rounded corners
+            borderSide: const BorderSide(
+              color: Colors.black, // Border color
+              width: 2.0, // Border width
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Colors.black, // Border color when enabled
+              width: 2.0, // Border width
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: Colors.black, // Border color when focused
+              width: 2.0, // w width
+            ),
+          ),
+        ),
+        value: selectedValue,
+        items: items
+            .map((item) => DropdownMenuItem(value: item, child: Text(item)))
+            .toList(),
+        onChanged: onChanged,
+        validator: (value) => value == null ? 'Please select $label' : null,
       ),
     );
   }

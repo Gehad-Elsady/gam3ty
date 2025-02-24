@@ -24,6 +24,7 @@ class AddUinModel {
   List<String> disadvantagesEn; //
   List<String> allowCitiesAr; //
   List<String> allowCitiesEn; //
+  String uniType;
   String? latitude;
   String? longitude;
 
@@ -55,6 +56,7 @@ class AddUinModel {
     required this.allowCitiesEn,
     this.latitude,
     this.longitude,
+    required this.uniType,
   });
 
   factory AddUinModel.fromJson(Map<String, dynamic> json) {
@@ -86,6 +88,7 @@ class AddUinModel {
       disadvantagesEn: List<String>.from(json['disadvantagesEn']),
       allowCitiesAr: List<String>.from(json['allowCitiesAr']),
       allowCitiesEn: List<String>.from(json['allowCitiesEn']),
+      uniType: json['uniType'],
     );
   }
 
@@ -118,6 +121,7 @@ class AddUinModel {
       'disadvantagesEn': disadvantagesEn,
       'allowCitiesAr': allowCitiesAr,
       'allowCitiesEn': allowCitiesEn,
+      'uniType': uniType,
     };
   }
 

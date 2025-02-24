@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
+import 'package:gam3ty/Screens/home/widgets/all_uin_screen.dart';
+import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
 import 'package:gam3ty/Screens/home/widgets/home-first-part.dart';
 import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
 import 'package:gam3ty/Screens/uni_screem.dart';
@@ -56,11 +58,12 @@ class StudentHome extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddUniScreen(),
-                      ));
+                  Navigator.pushNamed(context, AllUinScreen.routeName);
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => AddUniScreen(),
+                  //     ));
                 },
                 child: Text(
                   'University',
@@ -136,7 +139,7 @@ class StudentHome extends StatelessWidget {
                     HomefirstPart(),
                     MyDivider(text: "Our Universities"),
                     SizedBox(height: 20),
-                    SecondHomePart(),
+                    CategoryPart(),
                     SizedBox(height: 20),
                     TailPart()
                   ]))),
