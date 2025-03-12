@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/student%20home/student_home.dart';
@@ -16,6 +17,8 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = context.locale;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -27,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                fixedSize: const Size(150, 40),
+                fixedSize: const Size(160, 40),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
@@ -80,8 +83,8 @@ class WelcomeScreen extends StatelessWidget {
                   );
                 }
               },
-              child: const Text(
-                "Login",
+              child: Text(
+                "login".tr(),
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -91,6 +94,16 @@ class WelcomeScreen extends StatelessWidget {
             ),
           ),
         ],
+        leading: IconButton(
+          onPressed: () {
+            if (currentLocale.languageCode == 'en') {
+              context.setLocale(const Locale("ar"));
+            } else {
+              context.setLocale(const Locale("en"));
+            }
+          },
+          icon: const Icon(Icons.g_translate_outlined),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -106,7 +119,7 @@ class WelcomeScreen extends StatelessWidget {
               // Divider
               const SizedBox(height: 20),
               MyDivider(
-                text: "Universities",
+                text: "universities".tr(),
               ),
 
               // University Grid Section

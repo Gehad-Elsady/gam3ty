@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
 import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
@@ -56,7 +57,12 @@ class HomeScreen extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, UniProfile.routeName);
+                  // Navigator.pushNamed(context, UniProfile.routeName);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddUniScreen(),
+                      ));
                 },
                 child: Text(
                   'University',

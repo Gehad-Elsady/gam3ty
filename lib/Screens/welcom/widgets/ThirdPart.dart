@@ -1,8 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ThirdPart extends StatelessWidget {
+class ThirdPart extends StatefulWidget {
   const ThirdPart({super.key});
 
+  @override
+  State<ThirdPart> createState() => _ThirdPartState();
+}
+
+class _ThirdPartState extends State<ThirdPart> {
   @override
   Widget build(BuildContext context) {
     // List of image paths
@@ -74,7 +80,7 @@ class ThirdPart extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Universities We Support",
+                  "support-universities".tr(),
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
@@ -83,9 +89,9 @@ class ThirdPart extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 Text(
-                  "Our platform collaborates with a variety of renowned universities, offering you access to many colleges and programs.\n"
-                  "From top engineering schools to prestigious art academies, you can explore diverse options and apply to the college of your choice seamlessly.\n"
-                  "Join us to take the next step in your educational journey.",
+                  '${'info1'.tr()}\n'
+                  '${'info2'.tr()}\n'
+                  '${'info3'.tr()}',
                   style: TextStyle(
                     fontSize: 25,
                     color: Colors.black87,

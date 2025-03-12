@@ -55,7 +55,8 @@ class _AddUniScreenState extends State<AddUniScreen> {
     "Institutes",
     "national university",
     "Private universities",
-    "Government universities"
+    "Government universities",
+    "Technology University"
   ];
 
   final List<String> availableAdvantagesAr = [

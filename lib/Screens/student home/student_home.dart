@@ -58,12 +58,12 @@ class StudentHome extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AllUinScreen.routeName);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => AddUniScreen(),
-                  //     ));
+                  // Navigator.pushNamed(context, AllUinScreen.routeName);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddUniScreen(),
+                      ));
                 },
                 child: Text(
                   'University',

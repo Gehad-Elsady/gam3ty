@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -22,7 +23,7 @@ class TailPart extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'College Hub',
+                      'website'.tr(),
                       style: TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
@@ -141,7 +142,7 @@ class TailPart extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 35.0, top: 15),
                 child: Text(
-                  "Quick Links",
+                  "quick-links".tr(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: "Product Sans",
@@ -152,7 +153,7 @@ class TailPart extends StatelessWidget {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "Services",
+                  "services".tr(),
                   style: TextStyle(color: Colors.black),
                   textAlign: TextAlign.right,
                 ),
@@ -160,7 +161,7 @@ class TailPart extends StatelessWidget {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "About Us",
+                  "about-us".tr(),
                   style: TextStyle(color: Colors.black),
                   textAlign: TextAlign.right,
                 ),
@@ -168,7 +169,7 @@ class TailPart extends StatelessWidget {
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "Contact Us",
+                  "contact-us".tr(),
                   style: TextStyle(color: Colors.black),
                   textAlign: TextAlign.right,
                 ),
@@ -183,7 +184,7 @@ class TailPart extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 100.0),
                   child: Text(
-                    "Address",
+                    "address".tr(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: "Product Sans",

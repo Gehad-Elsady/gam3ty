@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -20,8 +21,8 @@ class FirstPart extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
-                    text: const TextSpan(
-                      text: 'Welcome to ',
+                    text: TextSpan(
+                      text: 'welcome'.tr(),
                       style: TextStyle(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
@@ -29,7 +30,7 @@ class FirstPart extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: 'College Hub 🎓',
+                          text: 'website'.tr(),
                           style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
@@ -41,9 +42,9 @@ class FirstPart extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Our app helps you find the perfect college based on your preferences.\n'
-                    'You can explore universities, their colleges, and the best options available for your aspirations.\n'
-                    'Discover every university and its colleges to make an informed choice for your future!',
+                    '${'dis1'.tr()}\n'
+                    '${'dis2'.tr()}\n'
+                    '${'dis3'.tr()}',
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       fontSize: 20,
