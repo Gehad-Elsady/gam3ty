@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
 import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
-import 'package:gam3ty/Screens/uni_screem.dart';
+import 'package:gam3ty/Screens/all_college_screem.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/Screens/home/widgets/home-first-part.dart';
 import 'package:gam3ty/Widgets/mydevider.dart';
@@ -42,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              'Gam3ty',
+              'website'.tr(),
               style: GoogleFonts.domine(
                 fontSize: 32,
                 color: Colors.black,
@@ -65,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
                 child: Text(
-                  'University',
+                  'universityies'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
                 child: Text(
-                  'College',
+                  'colleges'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -108,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                   // Navigator.pushReplacementNamed(context, WellcomeScreen.routeName);
                 },
                 child: Text(
-                  'Contact us',
+                  'contact-us'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -140,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HomefirstPart(),
-                    MyDivider(text: "Our Universities"),
+                    MyDivider(text: "our-universities".tr()),
                     SizedBox(height: 20),
                     CategoryPart(),
                     SizedBox(height: 20),

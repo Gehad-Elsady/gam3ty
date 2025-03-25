@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
@@ -20,10 +21,12 @@ class _CollegeInfoState extends State<CollegeInfo> {
   @override
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as CollegeModel;
+    Locale currentLocale = context.locale;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          model.nameEn,
+          currentLocale.languageCode == 'en' ? model.nameEn : model.nameAr,
           style: GoogleFonts.domine(
             fontSize: 32,
             color: Colors.black,
@@ -93,7 +96,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Basics Information',
+                              'basics-info'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -113,14 +116,17 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("College Dean:",
+                          Text("college-dean".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.collegePresidentEn,
+                          Text(
+                              currentLocale.languageCode == 'en'
+                                  ? model.collegePresidentEn
+                                  : model.collegePresidentAr,
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -130,14 +136,17 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("Address:",
+                          Text("uni-address".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.addressEn,
+                          Text(
+                              currentLocale.languageCode == 'en'
+                                  ? model.addressEn
+                                  : model.addressAr,
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -145,14 +154,17 @@ class _CollegeInfoState extends State<CollegeInfo> {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Text("College Massage:",
+                      Text("college-massage".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           )),
                       const SizedBox(width: 8),
-                      Text(model.descriptionEn,
+                      Text(
+                          currentLocale.languageCode == 'en'
+                              ? model.descriptionEn
+                              : model.descriptionAr,
                           style: GoogleFonts.domine(
                             fontSize: 20,
                             color: Colors.black,
@@ -160,7 +172,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       const SizedBox(height: 16),
                       Row(
                         children: [
-                          Text("Establish Date:",
+                          Text("uni-establish-date".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -197,7 +209,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Applying Information',
+                              'apply-info'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -217,7 +229,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("Accepted Percentage Start From:",
+                          Text("accepted-percentage".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -235,7 +247,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
 
                       Row(
                         children: [
-                          Text("Studying Type:",
+                          Text("studying-type".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -252,14 +264,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       const SizedBox(height: 16),
                       Row(
                         children: [
-                          Text("Academic Years:",
+                          Text("academic-years".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.academicYear,
+                          Text(model.academicYear + "years".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -269,14 +281,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       const SizedBox(height: 16),
                       Row(
                         children: [
-                          Text("Tuition Fees: ",
+                          Text("tuition-fees".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.Tuitionfees,
+                          Text(model.Tuitionfees + "egp".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -306,7 +318,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Career Information & Job',
+                              'career-info'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -325,7 +337,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       ),
                       // Content Section
                       const SizedBox(height: 8),
-                      Text("Career Opportunities:",
+                      Text("career-opportunities".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -333,10 +345,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           )),
                       const SizedBox(width: 8),
                       Text(
-                        model.careerOpportunitiesEnList
-                            .map((item) =>
-                                "• $item") // Add bullet point before each item
-                            .join("\n"), // Join each item with a newline
+                        currentLocale.languageCode == 'en'
+                            ? model.careerOpportunitiesEnList
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.careerOpportunitiesArList
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(
                           fontSize: 20,
                           color: Colors.black,
@@ -345,7 +361,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       ),
 
                       const SizedBox(height: 8),
-                      Text("Expected Jobs: ",
+                      Text("expected-jobs".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -353,10 +369,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           )),
                       const SizedBox(width: 8),
                       Text(
-                        model.expectedJobsEn
-                            .map((item) =>
-                                "• $item") // Add bullet point before each item
-                            .join("\n"), // Join each item with a newline
+                        currentLocale.languageCode == 'en'
+                            ? model.expectedJobsEn
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.expectedJobsAr
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(
                           fontSize: 20,
                           color: Colors.black,
@@ -387,7 +407,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Advantage and Disadvantage',
+                              'adv-disadv'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -406,7 +426,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       ),
                       // Content Section
                       const SizedBox(height: 8),
-                      Text("University Advantage:",
+                      Text("college-adv".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -414,10 +434,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           )),
                       const SizedBox(width: 8),
                       Text(
-                        model.advantagesEn
-                            .map((item) =>
-                                "• $item") // Add bullet point before each item
-                            .join("\n"), // Join each item with a newline
+                        currentLocale.languageCode == 'en'
+                            ? model.advantagesEn
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.advantagesAr
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(
                           fontSize: 20,
                           color: Colors.black,
@@ -426,7 +450,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       ),
 
                       const SizedBox(height: 8),
-                      Text("University Disadvantage:",
+                      Text("college-dis".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -434,10 +458,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           )),
                       const SizedBox(width: 8),
                       Text(
-                        model.disadvantagesEn
-                            .map((item) =>
-                                "• $item") // Add bullet point before each item
-                            .join("\n"), // Join each item with a newline
+                        currentLocale.languageCode == 'en'
+                            ? model.disadvantagesEn
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.disadvantagesAr
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(
                           fontSize: 20,
                           color: Colors.black,
@@ -467,7 +495,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Contact Information',
+                              'contact-info'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -487,7 +515,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("University Phone Number:",
+                          Text("college-phone".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -504,7 +532,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("University Website Link:",
+                          Text("college-website".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -539,7 +567,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("University Email:",
+                          Text("college-email".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,

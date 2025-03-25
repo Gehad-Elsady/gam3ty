@@ -1,8 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
-import 'package:gam3ty/Screens/add%20college/college_info.dart';
 import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
-import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -12,10 +11,12 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var category = ModalRoute.of(context)!.settings.arguments as String;
+    Locale currentLocale = context.locale;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(0xFF56ab91),
+        backgroundColor: Colors.white,
         title: Text(category,
             style: GoogleFonts.domine(
               fontSize: 32,
@@ -30,8 +31,10 @@ class CategoryScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF56ab91),
-              Color(0xFF14746f),
+              Color(0xff90E0EF),
+              Color(0xff00B4D8),
+              Color(0xff0077B6),
+              Color(0xff023E8A),
             ],
           ),
         ),
@@ -53,6 +56,11 @@ class CategoryScreen extends StatelessWidget {
                         snapshot.data!.isEmpty) {
                       return Center(child: Text('No services available'));
                     } else {
+                      // Sorting universities by establishment year (oldest to newest)
+                      final sortedUniversities = List.from(snapshot.data!)
+                        ..sort((a, b) =>
+                            a.establishDate.compareTo(b.establishDate));
+
                       return GridView.builder(
                         shrinkWrap:
                             true, // Allows GridView to be scrollable within the SingleChildScrollView
@@ -64,17 +72,11 @@ class CategoryScreen extends StatelessWidget {
                           crossAxisSpacing: 10,
                           childAspectRatio: 0.7,
                         ),
-                        itemCount: snapshot.data!.length,
+                        itemCount: sortedUniversities.length,
                         itemBuilder: (context, index) {
-                          final service = snapshot.data![index];
+                          final service = sortedUniversities[index];
                           return GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => UniInfo(
-                              //               arguments: service,
-                              //             )));
                               Navigator.pushNamed(context, UniInfo.routeName,
                                   arguments: service);
                             },
@@ -93,22 +95,11 @@ class CategoryScreen extends StatelessWidget {
                                   children: [
                                     // Image section
                                     Expanded(
-                                        child: Image.network(
-                                      service.image,
-                                      fit: BoxFit.contain,
-                                    )),
-                                    // Expanded(
-                                    //   child: CachedNetworkImage(
-                                    //     imageUrl: service.image,
-                                    //     placeholder: (context, url) =>
-                                    //         CircularProgressIndicator(),
-                                    //     errorWidget: (context, url, error) =>
-                                    //         Icon(Icons.error),
-                                    //     fit: BoxFit.fill,
-                                    //     width: double.infinity,
-                                    //   ),
-                                    // ),
-                                    // Text for name and price
+                                      child: Image.network(
+                                        service.image,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
@@ -116,7 +107,9 @@ class CategoryScreen extends StatelessWidget {
                                             CrossAxisAlignment.stretch,
                                         children: [
                                           Text(
-                                            service.uinNameEn,
+                                            currentLocale.languageCode == 'en'
+                                                ? service.uinNameEn
+                                                : service.uinNameAr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,

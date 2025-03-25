@@ -1,16 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
+import 'package:gam3ty/Screens/all_college_screem.dart';
 import 'package:gam3ty/Screens/home/widgets/all_uin_screen.dart';
 import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
-import 'package:gam3ty/Screens/home/widgets/home-first-part.dart';
-import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
-import 'package:gam3ty/Screens/uni_screem.dart';
+
+import 'package:gam3ty/Screens/student%20home/widget/student_frist_home.dart';
 import 'package:gam3ty/Screens/welcom/wellcome-screen.dart';
 import 'package:gam3ty/Screens/welcom/widgets/tail_part_kome.dart';
 import 'package:gam3ty/Widgets/mydevider.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
-import 'package:gam3ty/test.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StudentHome extends StatelessWidget {
@@ -19,10 +19,22 @@ class StudentHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = context.locale;
+
     return Scaffold(
       drawer: Drawer(),
       appBar: AppBar(
         actions: [
+          IconButton(
+            onPressed: () {
+              if (currentLocale.languageCode == 'en') {
+                context.setLocale(const Locale("ar"));
+              } else {
+                context.setLocale(const Locale("en"));
+              }
+            },
+            icon: const Icon(Icons.g_translate_outlined),
+          ),
           IconButton(
             icon: Icon(
               Icons.logout_rounded,
@@ -43,7 +55,7 @@ class StudentHome extends StatelessWidget {
             ),
             SizedBox(width: 10),
             Text(
-              'Gam3ty',
+              'website'.tr(),
               style: GoogleFonts.domine(
                 fontSize: 32,
                 color: Colors.black,
@@ -58,15 +70,15 @@ class StudentHome extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, AllUinScreen.routeName);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddUniScreen(),
-                      ));
+                  Navigator.pushNamed(context, AllUinScreen.routeName);
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => AddUniScreen(),
+                  //     ));
                 },
                 child: Text(
-                  'University',
+                  'universityies'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -79,7 +91,7 @@ class StudentHome extends StatelessWidget {
                   Navigator.pushNamed(context, CollegeScreen.routeName);
                 },
                 child: Text(
-                  'College',
+                  'colleges'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -92,7 +104,7 @@ class StudentHome extends StatelessWidget {
                   Navigator.pushNamed(context, ProfileScreen.routeName);
                 },
                 child: Text(
-                  'Profile',
+                  'profile'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -105,7 +117,7 @@ class StudentHome extends StatelessWidget {
                   // Navigator.pushReplacementNamed(context, WellcomeScreen.routeName);
                 },
                 child: Text(
-                  'Contact us',
+                  'contact-us'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -136,8 +148,8 @@ class StudentHome extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    HomefirstPart(),
-                    MyDivider(text: "Our Universities"),
+                    HomefirstStudentPart(),
+                    MyDivider(text: "our-universities".tr()),
                     SizedBox(height: 20),
                     CategoryPart(),
                     SizedBox(height: 20),

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
@@ -22,44 +23,46 @@ class _UniInfoState extends State<UniInfo> {
   @override
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as AddUinModel;
-
+    Locale currentLocale = context.locale;
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Colors.black),
-          ),
-        ),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => AddCollegeScreen(),
-          );
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Add College',
-                style: GoogleFonts.domine(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                )),
-            Icon(
-              Icons.add_circle_outline_sharp,
-              size: 50,
-              color: Colors.black,
-            ),
-          ],
-        ),
-      ),
+      // floatingActionButton: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(
+      //     backgroundColor: Colors.red,
+      //     padding: EdgeInsets.symmetric(horizontal: 16),
+      //     elevation: 0,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(8),
+      //       side: BorderSide(color: Colors.black),
+      //     ),
+      //   ),
+      //   onPressed: () {
+      //     showDialog(
+      //       context: context,
+      //       builder: (context) => AddCollegeScreen(),
+      //     );
+      //   },
+      //   child: Row(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: [
+      //       Text('Add College',
+      //           style: GoogleFonts.domine(
+      //             fontSize: 20,
+      //             color: Colors.black,
+      //             fontWeight: FontWeight.bold,
+      //           )),
+      //       Icon(
+      //         Icons.add_circle_outline_sharp,
+      //         size: 50,
+      //         color: Colors.black,
+      //       ),
+      //     ],
+      //   ),
+      // ),
       appBar: AppBar(
         title: Text(
-          model.uinNameEn,
+          currentLocale.languageCode == 'en'
+              ? model.uinNameEn
+              : model.uinNameAr,
           style: GoogleFonts.domine(
             fontSize: 32,
             color: Colors.black,
@@ -83,126 +86,124 @@ class _UniInfoState extends State<UniInfo> {
           ),
         ),
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Horizontal Scrollable Row for dynamic content
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(width: 80),
-                      // University Student Section
-                      Column(
-                        children: [
-                          ImageIcon(
-                            AssetImage("assets/images/graduation.png"),
-                            size: 200,
-                          ),
-                          SizedBox(height: 18),
-                          Text(
-                            "University Student",
-                            style: GoogleFonts.domine(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            model.numberOfStudents,
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 100),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 80),
 
-                      // Faculty Member Section
-                      Column(
-                        children: [
-                          ImageIcon(
-                            AssetImage("assets/images/teacher.png"),
-                            size: 200,
+                    // University Student Section
+                    Column(
+                      children: [
+                        ImageIcon(
+                          AssetImage("assets/images/graduation.png"),
+                          size: 200,
+                        ),
+                        SizedBox(height: 18),
+                        Text(
+                          "uni-student".tr(),
+                          style: GoogleFonts.domine(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(height: 18),
-                          Text(
-                            "Faculty Member",
-                            style: GoogleFonts.domine(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          model.numberOfStudents,
+                          style: GoogleFonts.domine(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(height: 10),
-                          Text(
-                            model.numberOfTeachers,
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 100),
-
-                      // University College Section
-                      Column(
-                        children: [
-                          ImageIcon(
-                            AssetImage("assets/images/college.png"),
-                            size: 200,
-                          ),
-                          SizedBox(height: 18),
-                          Text(
-                            "University College",
-                            style: GoogleFonts.domine(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            model.numberOfColleges,
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  Spacer(),
-
-                  // Container for the Image
-                  Container(
-                    height: 500,
-                    width: 500,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
+                        ),
+                      ],
                     ),
-                    child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(20), // Ensure matching radius
-                      child: Image.network(
-                        model.image,
-                        fit: BoxFit.contain,
+                    SizedBox(width: 80),
+
+                    // Faculty Member Section
+                    Column(
+                      children: [
+                        ImageIcon(
+                          AssetImage("assets/images/teacher.png"),
+                          size: 200,
+                        ),
+                        SizedBox(height: 18),
+                        Text(
+                          "uni-member".tr(),
+                          style: GoogleFonts.domine(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          model.numberOfTeachers,
+                          style: GoogleFonts.domine(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 80),
+
+                    // University College Section
+                    Column(
+                      children: [
+                        ImageIcon(
+                          AssetImage("assets/images/college.png"),
+                          size: 200,
+                        ),
+                        SizedBox(height: 18),
+                        Text(
+                          "uni-college".tr(),
+                          style: GoogleFonts.domine(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          model.numberOfColleges,
+                          style: GoogleFonts.domine(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 80),
+
+                    // Image Container
+                    Container(
+                      height: 500,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                      child: ClipRRect(
+                        borderRadius:
+                            BorderRadius.circular(20), // Ensure matching radius
+                        child: Image.network(
+                          model.image,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
-                  )
-                ],
+                  ],
+                ),
               ),
 
               const SizedBox(height: 16),
@@ -223,7 +224,7 @@ class _UniInfoState extends State<UniInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Basics Information',
+                              'basics-info'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -243,14 +244,17 @@ class _UniInfoState extends State<UniInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("Universty President:",
+                          Text("uni-president".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.universityPresidentEn,
+                          Text(
+                              currentLocale.languageCode == 'en'
+                                  ? model.universityPresidentEn
+                                  : model.universityPresidentAr,
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -260,14 +264,17 @@ class _UniInfoState extends State<UniInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("Address:",
+                          Text("uni-address".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(width: 8),
-                          Text(model.addressEn,
+                          Text(
+                              currentLocale.languageCode == 'en'
+                                  ? model.addressEn
+                                  : model.addressAr,
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -275,14 +282,17 @@ class _UniInfoState extends State<UniInfo> {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Text("University Massage:",
+                      Text("uni-message".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           )),
                       const SizedBox(width: 8),
-                      Text(model.descriptionEn,
+                      Text(
+                          currentLocale.languageCode == 'en'
+                              ? model.descriptionEn
+                              : model.descriptionAr,
                           style: GoogleFonts.domine(
                             fontSize: 20,
                             color: Colors.black,
@@ -290,7 +300,7 @@ class _UniInfoState extends State<UniInfo> {
                       const SizedBox(height: 16),
                       Row(
                         children: [
-                          Text("Establish Date:",
+                          Text("uni-establish-date".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -327,7 +337,7 @@ class _UniInfoState extends State<UniInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Applying Information',
+                              'apply-info'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -347,7 +357,7 @@ class _UniInfoState extends State<UniInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("Accepted Percentage Start From:",
+                          Text("accepted-percentage".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -364,7 +374,7 @@ class _UniInfoState extends State<UniInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("Areas you can join:",
+                          Text("areas-join".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -373,8 +383,10 @@ class _UniInfoState extends State<UniInfo> {
                               )),
                           const SizedBox(width: 8),
                           Text(
-                              model.allowCitiesEn
-                                  .join(", "), // Join cities if it's a list
+                              currentLocale.languageCode == 'en'
+                                  ? model.allowCitiesEn.join(", ")
+                                  : model.allowCitiesAr
+                                      .join(", "), // Join cities if it's a list
                               style: GoogleFonts.domine(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -387,7 +399,7 @@ class _UniInfoState extends State<UniInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("Studying Type:",
+                          Text("studying-type".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -424,7 +436,7 @@ class _UniInfoState extends State<UniInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Advantage and Disadvantage',
+                              'adv-disadv'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -443,7 +455,7 @@ class _UniInfoState extends State<UniInfo> {
                       ),
                       // Content Section
                       const SizedBox(height: 8),
-                      Text("University Advantage:",
+                      Text("uni-adv".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -451,10 +463,14 @@ class _UniInfoState extends State<UniInfo> {
                           )),
                       const SizedBox(width: 8),
                       Text(
-                        model.advantagesEn
-                            .map((item) =>
-                                "• $item") // Add bullet point before each item
-                            .join("\n"), // Join each item with a newline
+                        currentLocale.languageCode == 'en'
+                            ? model.advantagesEn
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.advantagesAr
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(
                           fontSize: 20,
                           color: Colors.black,
@@ -463,7 +479,7 @@ class _UniInfoState extends State<UniInfo> {
                       ),
 
                       const SizedBox(height: 8),
-                      Text("University Disadvantage:",
+                      Text("uni-dis".tr(),
                           style: GoogleFonts.domine(
                             fontSize: 25,
                             color: Colors.black,
@@ -471,10 +487,14 @@ class _UniInfoState extends State<UniInfo> {
                           )),
                       const SizedBox(width: 8),
                       Text(
-                        model.disadvantagesEn
-                            .map((item) =>
-                                "• $item") // Add bullet point before each item
-                            .join("\n"), // Join each item with a newline
+                        currentLocale.languageCode == 'en'
+                            ? model.disadvantagesEn
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.disadvantagesAr
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(
                           fontSize: 20,
                           color: Colors.black,
@@ -504,7 +524,7 @@ class _UniInfoState extends State<UniInfo> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Contact Information',
+                              'uni-contact'.tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 22,
                                 color: Colors.blue,
@@ -524,7 +544,7 @@ class _UniInfoState extends State<UniInfo> {
                       // Content Section
                       Row(
                         children: [
-                          Text("University Phone Number:",
+                          Text("uni-phone".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -541,7 +561,7 @@ class _UniInfoState extends State<UniInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("University Website Link:",
+                          Text("uni-website".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,
@@ -576,7 +596,7 @@ class _UniInfoState extends State<UniInfo> {
                       const SizedBox(height: 8),
                       Row(
                         children: [
-                          Text("University Email:",
+                          Text("uni-email".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 25,
                                 color: Colors.black,

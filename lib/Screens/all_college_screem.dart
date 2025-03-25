@@ -1,21 +1,21 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
 import 'package:gam3ty/Screens/add%20college/college_info.dart';
-import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
 import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CollegeScreen extends StatelessWidget {
-  static const String routeName = 'seeds-screen';
+  static const String routeName = 'college-screen';
   const CollegeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = context.locale;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('All Colleges',
+        title: Text('all-colleges'.tr(),
             style: GoogleFonts.domine(
               fontSize: 32,
               color: Colors.black,
@@ -118,7 +118,9 @@ class CollegeScreen extends StatelessWidget {
                                             CrossAxisAlignment.stretch,
                                         children: [
                                           Text(
-                                            service.nameEn,
+                                            currentLocale.languageCode == 'en'
+                                                ? service.nameEn
+                                                : service.nameAr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,

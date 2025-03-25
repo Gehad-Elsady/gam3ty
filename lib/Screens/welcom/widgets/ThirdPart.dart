@@ -11,7 +11,6 @@ class ThirdPart extends StatefulWidget {
 class _ThirdPartState extends State<ThirdPart> {
   @override
   Widget build(BuildContext context) {
-    // List of image paths
     final List<String> imagePaths = [
       "assets/images/جامعة-الجلالة.png",
       "assets/images/جامعة-شرم-الشيخ-كل-ما-تحتاج-معرفته-عنها.jpg",
@@ -33,7 +32,6 @@ class _ThirdPartState extends State<ThirdPart> {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          // Card containing all images
           Expanded(
             flex: 1,
             child: Card(
@@ -48,7 +46,7 @@ class _ThirdPartState extends State<ThirdPart> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5, // Adjust the number of columns
+                    crossAxisCount: 5,
                     crossAxisSpacing: 8.0,
                     mainAxisSpacing: 8.0,
                   ),
@@ -72,15 +70,14 @@ class _ThirdPartState extends State<ThirdPart> {
               ),
             ),
           ),
-          const SizedBox(width: 16), // Spacing between the card and text
-          // Text Explanation
+          const SizedBox(width: 16),
           Expanded(
             flex: 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "support-universities".tr(),
+                  "supportuniversities".tr(),
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,

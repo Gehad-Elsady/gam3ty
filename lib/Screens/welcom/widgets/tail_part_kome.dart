@@ -19,7 +19,7 @@ class TailPart extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 45.0, top: 15),
+                padding: const EdgeInsets.only(left: 45.0, top: 15, right: 45),
                 child: Row(
                   children: [
                     Text(
@@ -33,9 +33,10 @@ class TailPart extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 45.0, bottom: 10),
+                padding:
+                    const EdgeInsets.only(left: 45.0, bottom: 10, right: 45),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
                       height: 50,
@@ -137,17 +138,22 @@ class TailPart extends StatelessWidget {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: context.locale.languageCode == 'en'
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 35.0, top: 15),
+                padding: const EdgeInsets.only(
+                  right: 35.0,
+                  top: 15,
+                ),
                 child: Text(
                   "quick-links".tr(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: "Product Sans",
                       fontSize: 20),
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.left,
                 ),
               ),
               TextButton(
@@ -177,7 +183,7 @@ class TailPart extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 100.0, top: 15),
+            padding: const EdgeInsets.only(right: 100.0, top: 15, left: 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -195,7 +201,7 @@ class TailPart extends StatelessWidget {
                   height: 30,
                 ),
                 Text(
-                  "Main Office of the Design Agency.\nAirport Road\nUnited Arab Emirates",
+                  "address-details".tr(),
                   textAlign: TextAlign.left,
                 )
               ],

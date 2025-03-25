@@ -124,9 +124,9 @@ class WelcomeScreen extends StatelessWidget {
 
               // University Grid Section
               const SizedBox(height: 20),
-              const ThirdPart(),
+              ThirdPart(),
               const Divider(),
-              const TailPart(),
+              TailPart(),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
@@ -63,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Create Your Account",
+                              "create-account".tr(),
                               textAlign: TextAlign.center,
                               style: GoogleFonts.domine(
                                 fontSize: 32,
@@ -101,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           color: Colors.white,
                                         ),
                                         Text(
-                                          "University",
+                                          "university".tr(),
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.white),
@@ -139,7 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           color: Colors.white,
                                         ),
                                         Text(
-                                          "Student",
+                                          "student".tr(),
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.white),
@@ -183,11 +184,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // Name Field
                             _buildInputField(
                               controller: _usernameController,
-                              label: 'Full Name',
+                              label: 'name'.tr(),
                               prefixIcon: Icons.person,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter your full name';
+                                  return 'name-error'.tr();
                                 }
                                 return null;
                               },
@@ -196,15 +197,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // Email Field
                             _buildInputField(
                               controller: _emailController,
-                              label: 'Email',
+                              label: 'enter-email'.tr(),
                               prefixIcon: Icons.email,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter your email';
+                                  return 'empty-email-error'.tr();
                                 } else if (!RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(value)) {
-                                  return 'Please enter a valid email';
+                                  return 'email-error'.tr();
                                 }
                                 return null;
                               },
@@ -213,14 +214,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // Password Field
                             _buildInputField(
                               controller: _passwordController,
-                              label: 'Password',
+                              label: 'enter-password'.tr(),
                               prefixIcon: Icons.lock,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter your password';
+                                  return 'empty-pass-error'.tr();
                                 } else if (value.length < 6) {
-                                  return 'Password must be at least 6 characters long';
+                                  return 'pass-error'.tr();
                                 }
                                 return null;
                               },
@@ -229,12 +230,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // Confirm Password Field
                             _buildInputField(
                               controller: _confirmPasswordController,
-                              label: 'Confirm Password',
+                              label: 'confirm-password'.tr(),
                               prefixIcon: Icons.lock,
                               obscureText: true,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please confirm your password';
+                                  return 'confirm-password-error'.tr();
                                 }
                                 return null;
                               },
@@ -266,7 +267,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                               child: Text(
-                                'Sign Up',
+                                'signup'.tr(),
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
@@ -278,7 +279,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Already have an account?",
+                                  "have-an-account".tr(),
                                   style: TextStyle(
                                     color: Colors.white70,
                                     fontSize: 16,
@@ -293,7 +294,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     );
                                   },
                                   child: Text(
-                                    "Login",
+                                    "login".tr(),
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/uni_info.dart';
 import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
@@ -12,7 +13,7 @@ class AllUinScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('All Universities',
+        title: Text('all-universities'.tr(),
             style: GoogleFonts.domine(
               fontSize: 32,
               color: Colors.black,
@@ -51,6 +52,10 @@ class AllUinScreen extends StatelessWidget {
                         snapshot.data!.isEmpty) {
                       return Center(child: Text('No services available'));
                     } else {
+                      // Sorting universities by establishment year (oldest to newest)
+                      final sortedUniversities = List.from(snapshot.data!)
+                        ..sort((a, b) =>
+                            a.establishDate.compareTo(b.establishDate));
                       return GridView.builder(
                         shrinkWrap:
                             true, // Allows GridView to be scrollable within the SingleChildScrollView
@@ -62,17 +67,11 @@ class AllUinScreen extends StatelessWidget {
                           crossAxisSpacing: 10,
                           childAspectRatio: 0.7,
                         ),
-                        itemCount: snapshot.data!.length,
+                        itemCount: sortedUniversities.length,
                         itemBuilder: (context, index) {
-                          final service = snapshot.data![index];
+                          final service = sortedUniversities[index];
                           return GestureDetector(
                             onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => UniInfo(
-                              //               arguments: service,
-                              //             )));
                               Navigator.pushNamed(context, UniInfo.routeName,
                                   arguments: service);
                             },
@@ -114,7 +113,9 @@ class AllUinScreen extends StatelessWidget {
                                             CrossAxisAlignment.stretch,
                                         children: [
                                           Text(
-                                            service.uinNameEn,
+                                            context.locale.languageCode == 'en'
+                                                ? service.uinNameEn
+                                                : service.uinNameAr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:lottie/lottie.dart';
 
-class HomefirstPart extends StatelessWidget {
-  const HomefirstPart({super.key});
+class HomefirstStudentPart extends StatelessWidget {
+  const HomefirstStudentPart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class HomefirstPart extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 100, left: 40.0),
+                  padding: const EdgeInsets.only(top: 90, left: 40.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,10 +56,8 @@ class HomefirstPart extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 16),
                       Text(
-                        'That is the Admin university page that you can manage your university from here.\n'
-                        "Add college to your University and manage it from here.",
+                        'welcome-message-student'.tr(),
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 18,

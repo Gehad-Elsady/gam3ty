@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/home/widgets/category_screen.dart';
 
@@ -40,187 +41,22 @@ class CategoryPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, CategoryScreen.routeName,
-                  arguments: 'Government universities');
-            },
-            child: Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        aspectRatio: 16 / 15,
-                        viewportFraction: 1.0,
-                      ),
-                      items: images.map((image) {
-                        return Image.asset(
-                          image,
-                          fit: BoxFit.contain,
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Center(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        "Government universities",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, CategoryScreen.routeName,
-                  arguments: 'Private universities');
-            },
-            child: Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        aspectRatio: 16 / 15,
-                        viewportFraction: 1.0,
-                      ),
-                      items: images1.map((image) {
-                        return Image.asset(
-                          image,
-                          fit: BoxFit.contain,
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Center(
-                      child: Text(
-                        "Private universities",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, CategoryScreen.routeName,
-                  arguments: 'national university');
-            },
-            child: Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        aspectRatio: 16 / 15,
-                        viewportFraction: 1.0,
-                      ),
-                      items: images2.map((image) {
-                        return Image.asset(
-                          image,
-                          fit: BoxFit.contain,
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Center(
-                      child: Text(
-                        "national university",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, CategoryScreen.routeName,
-                  arguments: 'Institutes');
-            },
-            child: Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: SizedBox(
-                height: 300,
-                width: 300,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, CategoryScreen.routeName,
+                    arguments: 'Government universities');
+              },
+              child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
                 child: Stack(
                   children: [
                     ClipRRect(
@@ -232,7 +68,7 @@ class CategoryPart extends StatelessWidget {
                           aspectRatio: 16 / 15,
                           viewportFraction: 1.0,
                         ),
-                        items: images3.map((image) {
+                        items: images.map((image) {
                           return Image.asset(
                             image,
                             fit: BoxFit.contain,
@@ -251,7 +87,8 @@ class CategoryPart extends StatelessWidget {
                     Positioned.fill(
                       child: Center(
                         child: Text(
-                          "Institutes",
+                          textAlign: TextAlign.center,
+                          "government-universities".tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
@@ -264,21 +101,17 @@ class CategoryPart extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, CategoryScreen.routeName,
-                  arguments: 'Technology University');
-            },
-            child: Card(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 4,
-              child: SizedBox(
-                height: 300,
-                width: 300,
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, CategoryScreen.routeName,
+                    arguments: 'Private universities');
+              },
+              child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
                 child: Stack(
                   children: [
                     ClipRRect(
@@ -290,7 +123,7 @@ class CategoryPart extends StatelessWidget {
                           aspectRatio: 16 / 15,
                           viewportFraction: 1.0,
                         ),
-                        items: images4.map((image) {
+                        items: images1.map((image) {
                           return Image.asset(
                             image,
                             fit: BoxFit.contain,
@@ -309,7 +142,7 @@ class CategoryPart extends StatelessWidget {
                     Positioned.fill(
                       child: Center(
                         child: Text(
-                          "Technology University",
+                          "private-universities".tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
@@ -322,8 +155,179 @@ class CategoryPart extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, CategoryScreen.routeName,
+                    arguments: 'national university');
+              },
+              child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          enlargeCenterPage: true,
+                          aspectRatio: 16 / 15,
+                          viewportFraction: 1.0,
+                        ),
+                        items: images2.map((image) {
+                          return Image.asset(
+                            image,
+                            fit: BoxFit.contain,
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                      ),
+                    ),
+                    Positioned.fill(
+                      child: Center(
+                        child: Text(
+                          "national-universities".tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, CategoryScreen.routeName,
+                    arguments: 'Institutes');
+              },
+              child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
+                child: SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            aspectRatio: 16 / 15,
+                            viewportFraction: 1.0,
+                          ),
+                          items: images3.map((image) {
+                            return Image.asset(
+                              image,
+                              fit: BoxFit.contain,
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Center(
+                          child: Text(
+                            "institutes".tr(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, CategoryScreen.routeName,
+                    arguments: 'Technology University');
+              },
+              child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
+                child: SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            aspectRatio: 16 / 15,
+                            viewportFraction: 1.0,
+                          ),
+                          items: images4.map((image) {
+                            return Image.asset(
+                              image,
+                              fit: BoxFit.contain,
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Center(
+                          child: Text(
+                            "technology-university".tr(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

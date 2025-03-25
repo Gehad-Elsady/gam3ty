@@ -6,10 +6,9 @@ import 'package:gam3ty/Screens/Profile/profile-screen.dart';
 import 'package:gam3ty/Screens/add%20college/college_info.dart';
 import 'package:gam3ty/Screens/home/widgets/all_uin_screen.dart';
 import 'package:gam3ty/Screens/home/widgets/category_screen.dart';
-import 'package:gam3ty/Screens/home/widgets/second-home-part.dart';
 import 'package:gam3ty/Screens/student%20home/student_home.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
-import 'package:gam3ty/Screens/uni_screem.dart';
+import 'package:gam3ty/Screens/all_college_screem.dart';
 import 'package:gam3ty/backend/firebase_options.dart';
 import 'package:gam3ty/Screens/home/home-screen.dart';
 import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
@@ -35,8 +34,7 @@ void main() async {
         Locale('en'),
         Locale('ar'),
       ],
-      path:
-          'assets/translation', // Ensure this folder exists with en.json & ar.json
+      path: 'assets/translation',
       saveLocale: true,
       fallbackLocale: const Locale("en"),
       startLocale: const Locale("en"),
@@ -47,14 +45,13 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Gam3ty", // Optional: App title
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
+      title: "Gam3ty",
       locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
       debugShowCheckedModeBanner: false,
       initialRoute: WelcomeScreen.routeName,
       routes: {
