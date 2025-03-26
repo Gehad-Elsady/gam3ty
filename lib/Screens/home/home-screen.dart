@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              "assets/images/logo-light.png",
+              "assets/images/Gam3ty-removebg-preview.png",
               height: 100,
             ),
             SizedBox(width: 10),

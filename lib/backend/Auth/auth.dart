@@ -84,4 +84,12 @@ class AuthFunctions {
         await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
     return docUser.data();
   }
+
+  static sendRestPassword(String emailAddress) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress);
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+    }
+  }
 }

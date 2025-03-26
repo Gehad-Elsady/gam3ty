@@ -25,39 +25,39 @@ class _UniInfoState extends State<UniInfo> {
     var model = ModalRoute.of(context)?.settings.arguments as AddUinModel;
     Locale currentLocale = context.locale;
     return Scaffold(
-      // floatingActionButton: ElevatedButton(
-      //   style: ElevatedButton.styleFrom(
-      //     backgroundColor: Colors.red,
-      //     padding: EdgeInsets.symmetric(horizontal: 16),
-      //     elevation: 0,
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(8),
-      //       side: BorderSide(color: Colors.black),
-      //     ),
-      //   ),
-      //   onPressed: () {
-      //     showDialog(
-      //       context: context,
-      //       builder: (context) => AddCollegeScreen(),
-      //     );
-      //   },
-      //   child: Row(
-      //     mainAxisSize: MainAxisSize.min,
-      //     children: [
-      //       Text('Add College',
-      //           style: GoogleFonts.domine(
-      //             fontSize: 20,
-      //             color: Colors.black,
-      //             fontWeight: FontWeight.bold,
-      //           )),
-      //       Icon(
-      //         Icons.add_circle_outline_sharp,
-      //         size: 50,
-      //         color: Colors.black,
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      floatingActionButton: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(color: Colors.black),
+          ),
+        ),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => AddCollegeScreen(),
+          );
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Add College',
+                style: GoogleFonts.domine(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                )),
+            Icon(
+              Icons.add_circle_outline_sharp,
+              size: 50,
+              color: Colors.black,
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text(
           currentLocale.languageCode == 'en'
@@ -616,9 +616,11 @@ class _UniInfoState extends State<UniInfo> {
                 ),
               ),
               SizedBox(height: 16),
-              CollegePart(
-                id: model.id,
-              ),
+              model.uniType == 'Institutes'
+                  ? SizedBox()
+                  : CollegePart(
+                      id: model.id,
+                    ),
               Card(
                 child: Container(
                   height: 300,

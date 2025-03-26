@@ -82,5 +82,12 @@
   "college-website":"College Website Link:",
   "college-email":"College Email:",
   "years":" Years",
-  "egp":" EGP"
+  "egp":" EGP",
+  "forgot-password":"Forgot Password?",
+  "reset-massage":"Please enter your email to receive the reset link.",
+  "cancel":"Cancel",
+  "send":"Send",
+  "success-massage":"Password Reset Link Sent",
+  "send-massage":"A reset link has been sent to",
+  "ok":"OK"
 }

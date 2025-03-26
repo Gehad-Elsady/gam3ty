@@ -15,6 +15,8 @@ class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _resetPasswordEmailController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +260,101 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                        SizedBox(height: 20),
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                TextEditingController emailController =
+                                    TextEditingController();
+
+                                return AlertDialog(
+                                  title: Text('forgot-password'.tr()),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('reset-massage'.tr()),
+                                      const SizedBox(height: 10),
+                                      TextField(
+                                        controller: emailController,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration: InputDecoration(
+                                          hintText: 'enter-email'.tr(),
+                                          border: OutlineInputBorder(),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      child: Text('cancel'.tr()),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text('send'.tr()),
+                                      onPressed: () {
+                                        String email =
+                                            emailController.text.trim();
+                                        if (email.isNotEmpty) {
+                                          // Send password reset link
+                                          AuthFunctions.sendRestPassword(email);
+
+                                          // Close the current dialog
+                                          Navigator.of(context).pop();
+
+                                          // Show confirmation dialog
+                                          showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                    'success-massage'.tr()),
+                                                content: Text(
+                                                    'send-massage'.tr() +
+                                                        email),
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text('ok'.tr()),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          // Show error message if email is empty
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                  'Please enter a valid email address.'),
+                                              backgroundColor: Colors.red,
+                                            ),
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: Text(
+                            "forgot-password".tr(),
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
                       ],
                     ),

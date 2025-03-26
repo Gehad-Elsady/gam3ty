@@ -33,7 +33,7 @@ class CategoryPart extends StatelessWidget {
   final List<String> images4 = [
     "assets/images/white-dtu-logo-ar.png",
     "assets/images/Logo-NCT-2.png",
-    "assets/images/لوجو-جامعة-بني-سويف-التكنولوجية-2025-small.jpg",
+    "assets/images/images (9).jpeg",
     "assets/images/logo.jpeg"
   ];
 
