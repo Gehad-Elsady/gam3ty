@@ -55,6 +55,9 @@ dependencies:
   google_maps_flutter_web: ^0.5.10
   google_maps: 8.1.1
   easy_localization: ^3.0.7+1
+  dio: ^5.8.0+1
+  flutter_inappwebview: ^6.1.5
+  webview_flutter: ^4.10.0
 
 
 dev_dependencies:

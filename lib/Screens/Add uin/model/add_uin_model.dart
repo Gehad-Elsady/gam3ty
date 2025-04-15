@@ -27,6 +27,7 @@ class AddUinModel {
   String uniType;
   String? latitude;
   String? longitude;
+  String filePrice;
 
   AddUinModel({
     required this.id,
@@ -41,6 +42,7 @@ class AddUinModel {
     required this.addressAr,
     required this.addressEn,
     required this.contactNumber,
+    required this.filePrice,
     required this.email,
     required this.image,
     required this.acceptedPercentage,
@@ -78,6 +80,7 @@ class AddUinModel {
       acceptedPercentage: json['acceptedPercentage'],
       uniLink: json['uniLink'],
       descriptionAr: json['descriptionAr'],
+      filePrice: json['filePrice'],
       descriptionEn: json['descriptionEn'],
       studyingType: json['studyingType'],
       latitude: json['latitude'],
@@ -122,6 +125,7 @@ class AddUinModel {
       'allowCitiesAr': allowCitiesAr,
       'allowCitiesEn': allowCitiesEn,
       'uniType': uniType,
+      'filePrice': filePrice,
     };
   }
 

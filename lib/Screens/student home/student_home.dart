@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
 import 'package:gam3ty/Screens/all_college_screem.dart';
+import 'package:gam3ty/Screens/contact/contact-screen.dart';
 import 'package:gam3ty/Screens/home/widgets/all_uin_screen.dart';
 import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
 
@@ -114,7 +115,8 @@ class StudentHome extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  // Navigator.pushReplacementNamed(context, WellcomeScreen.routeName);
+                  Navigator.pushReplacementNamed(
+                      context, ContactScreen.routeName);
                 },
                 child: Text(
                   'contact-us'.tr(),

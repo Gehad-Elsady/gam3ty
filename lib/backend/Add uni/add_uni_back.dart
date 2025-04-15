@@ -55,6 +55,7 @@ class AddUniBack {
           allowCitiesAr: List<String>.from(data['allowCitiesAr'] ?? []),
           allowCitiesEn: List<String>.from(data['allowCitiesEn'] ?? []),
           uniType: data['uniType'] ?? 'No Name',
+          filePrice: data['filePrice']?.toString() ?? "0",
         );
       }).toList();
     });
@@ -98,6 +99,7 @@ class AddUniBack {
           allowCitiesAr: List<String>.from(data['allowCitiesAr'] ?? []),
           allowCitiesEn: List<String>.from(data['allowCitiesEn'] ?? []),
           uniType: data['uniType'] ?? 'No Name',
+          filePrice: data['filePrice']?.toString() ?? "0",
         );
       }).toList();
     });

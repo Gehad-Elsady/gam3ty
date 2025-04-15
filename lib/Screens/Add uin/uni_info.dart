@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
 import 'package:gam3ty/Screens/add%20college/add_college.dart';
+import 'package:gam3ty/Screens/payment-scree.dart';
 import 'package:gam3ty/Screens/uni_location.dart';
 import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,15 +37,17 @@ class _UniInfoState extends State<UniInfo> {
           ),
         ),
         onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => AddCollegeScreen(),
-          );
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    PaymentScreen(totalPrice: int.parse(model.filePrice)),
+              ));
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Add College',
+            Text('Apply for University',
                 style: GoogleFonts.domine(
                   fontSize: 20,
                   color: Colors.black,
