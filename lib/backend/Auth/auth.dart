@@ -81,7 +81,7 @@ class AuthFunctions {
     var collection = getUserCollection();
 
     DocumentSnapshot<UserModel> docUser =
-        await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
+        await collection.doc(FirebaseAuth.instance.currentUser?.uid).get();
     return docUser.data();
   }
 

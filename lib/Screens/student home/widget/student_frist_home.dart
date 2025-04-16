@@ -15,12 +15,14 @@ class HomefirstStudentPart extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData) {
-          return const Center(child: Text('No user data available.'));
         }
 
         var userData = snapshot.data;
-        String userName = userData?.name ?? 'User';
+        String userName = (userData != null &&
+                userData.name != null &&
+                userData.name!.isNotEmpty)
+            ? userData.name!
+            : ''; // Use localized string for "New User"
 
         return SizedBox(
           height: 400,
@@ -46,7 +48,7 @@ class HomefirstStudentPart extends StatelessWidget {
                           ),
                           children: [
                             TextSpan(
-                              text: '$userName 🎉\n',
+                              text: ' $userName 🎉\n',
                               style: const TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
@@ -59,7 +61,7 @@ class HomefirstStudentPart extends StatelessWidget {
                       Text(
                         'welcome-message-student'.tr(),
                         textAlign: TextAlign.start,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                         ),

@@ -10,7 +10,7 @@ class FirstPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 400,
       child: SingleChildScrollView(
         child: Row(
           children: [

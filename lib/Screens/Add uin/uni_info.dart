@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
+import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
 import 'package:gam3ty/Screens/add%20college/add_college.dart';
 import 'package:gam3ty/Screens/payment-scree.dart';
 import 'package:gam3ty/Screens/uni_location.dart';
@@ -37,27 +39,46 @@ class _UniInfoState extends State<UniInfo> {
           ),
         ),
         onPressed: () {
-          Navigator.push(
+          if (FirebaseAuth.instance.currentUser != null) {
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) =>
                     PaymentScreen(totalPrice: int.parse(model.filePrice)),
-              ));
+              ),
+            );
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('error'.tr()),
+                content: Text('error-massage'.tr()),
+                actions: [
+                  TextButton(
+                      child: Text('login'.tr()),
+                      onPressed: () {
+                        Navigator.pushNamed(context, LoginScreen.routeName);
+                      }),
+                  TextButton(
+                    child: Text('cancel'.tr()),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            );
+          }
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Apply for University',
+            Text('apply'.tr(),
                 style: GoogleFonts.domine(
                   fontSize: 20,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 )),
-            Icon(
-              Icons.add_circle_outline_sharp,
-              size: 50,
-              color: Colors.black,
-            ),
           ],
         ),
       ),

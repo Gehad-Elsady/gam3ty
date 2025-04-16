@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
@@ -23,7 +24,6 @@ class StudentHome extends StatelessWidget {
     Locale currentLocale = context.locale;
 
     return Scaffold(
-      drawer: Drawer(),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -36,17 +36,20 @@ class StudentHome extends StatelessWidget {
             },
             icon: const Icon(Icons.g_translate_outlined),
           ),
-          IconButton(
-            icon: Icon(
-              Icons.logout_rounded,
-              color: Colors.black,
-              size: 30,
-            ),
-            onPressed: () {
-              AuthFunctions.signOut();
-              Navigator.pushReplacementNamed(context, WelcomeScreen.routeName);
-            },
-          )
+          FirebaseAuth.instance.currentUser != null
+              ? IconButton(
+                  icon: Icon(
+                    Icons.logout_rounded,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    AuthFunctions.signOut();
+                    Navigator.pushReplacementNamed(
+                        context, WelcomeScreen.routeName);
+                  },
+                )
+              : SizedBox()
         ],
         title: Row(
           children: [
@@ -66,69 +69,76 @@ class StudentHome extends StatelessWidget {
           ],
         ),
         flexibleSpace: Center(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AllUinScreen.routeName);
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => AddUniScreen(),
-                  //     ));
-                },
-                child: Text(
-                  'universityies'.tr(),
-                  style: GoogleFonts.domine(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, CollegeScreen.routeName);
-                },
-                child: Text(
-                  'colleges'.tr(),
-                  style: GoogleFonts.domine(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, ProfileScreen.routeName);
-                },
-                child: Text(
-                  'profile'.tr(),
-                  style: GoogleFonts.domine(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, ContactScreen.routeName);
-                },
-                child: Text(
-                  'contact-us'.tr(),
-                  style: GoogleFonts.domine(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          child: FutureBuilder(
+              future: AuthFunctions.readUserData(),
+              builder: (context, snapshot) {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AllUinScreen.routeName);
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => AddUniScreen(),
+                        //     ));
+                      },
+                      child: Text(
+                        'universityies'.tr(),
+                        style: GoogleFonts.domine(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, CollegeScreen.routeName);
+                      },
+                      child: Text(
+                        'colleges'.tr(),
+                        style: GoogleFonts.domine(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    snapshot.data == null
+                        ? const SizedBox()
+                        : TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, ProfileScreen.routeName);
+                            },
+                            child: Text(
+                              'profile'.tr(),
+                              style: GoogleFonts.domine(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, ContactScreen.routeName);
+                      },
+                      child: Text(
+                        'contact-us'.tr(),
+                        style: GoogleFonts.domine(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }),
         ),
       ),
       body: Container(
