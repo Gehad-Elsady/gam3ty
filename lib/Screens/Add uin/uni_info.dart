@@ -52,7 +52,7 @@ class _UniInfoState extends State<UniInfo> {
               context: context,
               builder: (context) => AlertDialog(
                 title: Text('error'.tr()),
-                content: Text('error-massage'.tr()),
+                content: Text('error_massage'.tr()),
                 actions: [
                   TextButton(
                       child: Text('login'.tr()),

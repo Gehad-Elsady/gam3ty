@@ -32,7 +32,7 @@ class _ContactScreenState extends State<ContactScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'contact'.tr(),
+          'contact-us'.tr(),
           style: TextStyle(
             color: Colors.blue,
             fontSize: 30,
