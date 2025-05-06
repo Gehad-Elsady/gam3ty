@@ -7,6 +7,7 @@ import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
 import 'package:gam3ty/Screens/add%20college/add_college.dart';
 import 'package:gam3ty/Screens/add%20college/model/college_model.dart';
 import 'package:gam3ty/Screens/payment-scree.dart';
+import 'package:gam3ty/backend/Auth/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,60 +28,69 @@ class _CollegeInfoState extends State<CollegeInfo> {
     Locale currentLocale = context.locale;
 
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Colors.black),
-          ),
-        ),
-        onPressed: () {
-          if (FirebaseAuth.instance.currentUser != null) {
-            int price = (int.parse(model.Tuitionfees) * 0.3).toInt();
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PaymentScreen(totalPrice: price),
-              ),
-            );
-          } else {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('error'.tr()),
-                content: Text('error_massage'.tr()),
-                actions: [
-                  TextButton(
-                      child: Text('login'.tr()),
-                      onPressed: () {
-                        Navigator.pushNamed(context, LoginScreen.routeName);
-                      }),
-                  TextButton(
-                    child: Text('cancel'.tr()),
+      floatingActionButton: FutureBuilder(
+          future: AuthFunctions.readUserData(),
+          builder: (context, snapshot) {
+            return snapshot.data!.role == 'Student'
+                ? ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: BorderSide(color: Colors.black),
+                      ),
+                    ),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      if (FirebaseAuth.instance.currentUser != null) {
+                        int price =
+                            (int.parse(model.Tuitionfees) * 0.3).toInt();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PaymentScreen(totalPrice: price),
+                          ),
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text('error'.tr()),
+                            content: Text('error_massage'.tr()),
+                            actions: [
+                              TextButton(
+                                  child: Text('login'.tr()),
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, LoginScreen.routeName);
+                                  }),
+                              TextButton(
+                                child: Text('cancel'.tr()),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     },
-                  ),
-                ],
-              ),
-            );
-          }
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('apply'.tr(),
-                style: GoogleFonts.domine(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                )),
-          ],
-        ),
-      ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('apply'.tr(),
+                            style: GoogleFonts.domine(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ],
+                    ),
+                  )
+                : SizedBox();
+          }),
       appBar: AppBar(
         title: Text(
           currentLocale.languageCode == 'en' ? model.nameEn : model.nameAr,

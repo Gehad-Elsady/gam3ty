@@ -58,14 +58,13 @@ class HomefirstPart extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'That is the Admin university page that you can manage your university from here.\n'
-                        "Add college to your University and manage it from here.",
+                        '${'admin-massage'.tr()} ${'admin-massage2'.tr()}',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),

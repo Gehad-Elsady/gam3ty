@@ -184,6 +184,8 @@
   "add_uni":"Add University",
   "wait":"We will add it soon 🔜",
   "universityies":"Universities & Institutes",
-  "fields":"Specialties and Departments"
+  "fields":"Specialties and Departments",
+  "admin-massage":"That is the Admin university page that you can manage your university from here.\n",
+  "admin-massage2":"Add college to your University and manage it from here."
 
 }
