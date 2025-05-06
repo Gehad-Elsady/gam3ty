@@ -7,6 +7,7 @@ import 'package:gam3ty/Screens/add%20college/model/college_model.dart';
 import 'package:gam3ty/backend/Add%20uni/add_uni_back.dart';
 import 'package:gam3ty/backend/add%20college/add_college_back.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AddCollegeScreen extends StatefulWidget {
   const AddCollegeScreen({super.key});
@@ -53,6 +54,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   final List<String> careerOpportunitiesEnList = [];
   final List<String> expectedJobsArList = [];
   final List<String> expectedJobsEnList = [];
+  final List<String> fieldsArList = [];
+  final List<String> fieldsEnList = [];
 
   final List<String> availableAdvantagesAr = [
     'سمعة أكاديمية قوية',
@@ -310,6 +313,179 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
     'Logistics Specialist'
   ];
 
+  final List<String> fieldsAr = [
+    "الطب البشري",
+    "طب الأسنان",
+    "الصيدلة",
+    "العلاج الطبيعي",
+    "التمريض",
+    "الطب البيطري",
+    "العلوم الصحية التطبيقية",
+    "الصحة العامة",
+    "التغذية والصحة العامة",
+    "الهندسةالمدنية",
+    "الهندسة المعمارية",
+    "الهندسة الكهربائية",
+    "الهندسة الميكانيكية",
+    "الهندسة الكيميائية",
+    "الهندسة الصناعية",
+    "علوم الحاسب",
+    "نظم المعلومات",
+    "تكنولوجيا المعلومات",
+    "الذكاء الاصطناعي",
+    "هندسة البرمجيات",
+    "هندسة الاتصالات",
+    "هندسة الإلكترونيات",
+    "هندسة الميكاترونيات",
+    "هندسة الطاقة",
+    "هندسة الطيران",
+    "هندسة البترول",
+    "هندسة النانو تكنولوجي",
+    "الاقتصاد",
+    "المحاسبة",
+    "إدارة الأعمال",
+    "العلوم الإدارية",
+    "التسويق",
+    "التمويل والاستثمار",
+    "التجارة الدولية",
+    "نظم معلومات الأعمال",
+    "الرياضيات",
+    "الفيزياء",
+    "الكيمياء",
+    "الأحياء",
+    "الجيولوجيا",
+    "علوم البحار",
+    "علوم الأرض",
+    "علوم الفلك",
+    "الإحصاء",
+    "الكيمياء الحيوية",
+    "التربية (رياض الأطفال، التعليم الأساسي، التربية الخاصة، وغيرها)",
+    "التربية النوعية",
+    "التربية الرياضية",
+    "مناهج وطرق التدريس",
+    "علم النفس التربوي",
+    "الإدارة التربوية",
+    "الحقوق",
+    "الشريعة والقانون",
+    "العلوم السياسية",
+    "العلاقات الدولية",
+    "الدراسات الإسلامية",
+    "أصول الدين",
+    "الفلسفة",
+    "علم الاجتماع",
+    "علم النفس",
+    "الخدمة الاجتماعية",
+    "اللغة العربية",
+    "اللغة الإنجليزية",
+    "اللغة الفرنسية",
+    "اللغات الشرقية",
+    "الترجمة",
+    "الأدب المقارن",
+    "الدراسات اللغوية",
+    "الفنون الجميلة (رسم، نحت، تصوير)",
+    "الفنون التطبيقية (تصميم داخلي، تصميم صناعي، نسيج، ملابس)",
+    "التصميم الجرافيكي",
+    "التصميم الصناعي",
+    "العمارة الداخلية",
+    "التاريخ",
+    "الجغرافيا",
+    "الآثار",
+    "الأنثروبولوجيا",
+    "التخطيط العمراني",
+    "نظم المعلومات الجغرافية",
+    "الإعلام (صحافة، إذاعة وتلفزيون، علاقات عامة)",
+    "الاتصال الجماهيري",
+    "الإعلام الرقمي",
+    "الإنتاج الإعلامي",
+    "السينما والتلفزيون"
+  ];
+  final List<String> fieldsEn = [
+    "Human Medicine",
+    "Dentistry",
+    "Pharmacy",
+    "Physical Therapy",
+    "Nursing",
+    "Veterinary Medicine",
+    "Applied Health Sciences",
+    "Public Health",
+    "Nutrition and Public Health",
+    "Civil Engineering",
+    "Architecture",
+    "Electrical Engineering",
+    "Mechanical Engineering",
+    "Chemical Engineering",
+    "Industrial Engineering",
+    "Computer Science",
+    "Information Systems",
+    "Information Technology",
+    "Artificial Intelligence",
+    "Software Engineering",
+    "Telecommunications Engineering",
+    "Electronics Engineering",
+    "Mechatronics Engineering",
+    "Energy Engineering",
+    "Aeronautical Engineering",
+    "Petroleum Engineering",
+    "Nanotechnology Engineering",
+    "Economics",
+    "Accounting",
+    "Business Administration",
+    "Administrative Sciences",
+    "Marketing",
+    "Finance and Investment",
+    "International Trade",
+    "Business Information Systems",
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "Geology",
+    "Marine Sciences",
+    "Earth Sciences",
+    "Astronomy",
+    "Statistics",
+    "Biochemistry",
+    "Education (Preschool, Basic, Special, etc.)",
+    "Special Education",
+    "Physical Education",
+    "Curriculum and Instruction",
+    "Educational Psychology",
+    "Educational Administration",
+    "Law",
+    "Sharia and Law",
+    "Political Science",
+    "International Relations",
+    "Islamic Studies",
+    "Fundamentals of Religion",
+    "Philosophy",
+    "Sociology",
+    "Psychology",
+    "Social Work",
+    "Arabic Language",
+    "English Language",
+    "French Language",
+    "Eastern Languages",
+    "Translation",
+    "Comparative Literature",
+    "Linguistic Studies",
+    "Fine Arts (Drawing, Sculpture, Photography)",
+    "Applied Arts (Interior Design, Industrial Design, Textiles, Clothing)",
+    "Graphic Design",
+    "Industrial Design",
+    "Interior Architecture",
+    "History",
+    "Geography",
+    "Archaeology",
+    "Anthropology",
+    "Urban Planning",
+    "Geographic Information Systems",
+    "Media (Journalism, Radio & TV, Public Relations)",
+    "Mass Communication",
+    "Digital Media",
+    "Media Production",
+    "Cinema and Television"
+  ];
+
   // For image upload
   Uint8List webImage = Uint8List(0);
   File? _imageFile;
@@ -457,7 +633,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
     return [
       Step(
         isActive: _currentStep >= 0,
-        title: const Text('Basic Info'),
+        title: Text('title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -469,14 +645,14 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: uinIdController,
-                        label: 'University ID',
+                        label: 'university_id'.tr(),
                         prefixIcon: Icons.numbers,
                       ),
                     ),
                     Expanded(
                       child: _buildTextField(
                         controller: idController,
-                        label: 'College ID',
+                        label: 'college_id'.tr(),
                         prefixIcon: Icons.numbers,
                       ),
                     )
@@ -488,7 +664,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: collegeNameArController,
-                        label: 'College Name (AR)',
+                        label: 'college_name_ar'.tr(),
                         prefixIcon: Icons.school,
                       ),
                     ),
@@ -496,7 +672,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: collegeNameEnController,
-                        label: 'College Name (EN)',
+                        label: 'college_name_en'.tr(),
                         prefixIcon: Icons.school_outlined,
                       ),
                     ),
@@ -505,7 +681,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: establishDateController,
-                  label: 'Establish Date',
+                  label: 'establish_date'.tr(),
                   prefixIcon: Icons.calendar_today,
                 ),
               ],
@@ -515,7 +691,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       ),
       Step(
         isActive: _currentStep >= 1,
-        title: const Text('Statistics'),
+        title: Text('addCollege.statistics.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -525,21 +701,21 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: TuitionFeesController,
-                  label: 'Tuition fees',
+                  label: 'addCollege.statistics.tuitionFees'.tr(),
                   prefixIcon: Icons.person,
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: acceptedPercentageController,
-                  label: 'Accepted Percentage',
+                  label: 'addCollege.statistics.acceptedPercentage'.tr(),
                   prefixIcon: Icons.percent,
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: numberOfAcademiesYearsController,
-                  label: 'Number of Academic years',
+                  label: 'addCollege.statistics.numberOfAcademicYears'.tr(),
                   prefixIcon: Icons.percent,
                   keyboardType: TextInputType.number,
                 ),
@@ -550,7 +726,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       ),
       Step(
         isActive: _currentStep >= 2,
-        title: const Text('Contact'),
+        title: Text('addCollege.contact.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -562,7 +738,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: addressArController,
-                        label: 'Address (AR)',
+                        label: 'addCollege.contact.addressAr'.tr(),
                         prefixIcon: Icons.location_on,
                       ),
                     ),
@@ -570,7 +746,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: addressEnController,
-                        label: 'Address (EN)',
+                        label: 'addCollege.contact.addressEn'.tr(),
                         prefixIcon: Icons.location_on_outlined,
                       ),
                     ),
@@ -579,21 +755,21 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: contactNumberController,
-                  label: 'Contact Number',
+                  label: 'addCollege.contact.contactNumber'.tr(),
                   prefixIcon: Icons.phone,
                   keyboardType: TextInputType.phone,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: emailController,
-                  label: 'Email',
+                  label: 'addCollege.contact.email'.tr(),
                   prefixIcon: Icons.email,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: uniLinkController,
-                  label: 'College Website',
+                  label: 'addCollege.contact.collegeWebsite'.tr(),
                   prefixIcon: Icons.link,
                   keyboardType: TextInputType.url,
                 ),
@@ -604,7 +780,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       ),
       Step(
         isActive: _currentStep >= 3,
-        title: const Text('Management'),
+        title: Text('addCollege.management.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -616,7 +792,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: collegePresidentArController,
-                        label: 'College President (AR)',
+                        label: 'addCollege.management.collegePresidentAr'.tr(),
                         prefixIcon: Icons.person_2,
                       ),
                     ),
@@ -624,7 +800,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: collegePresidentEnController,
-                        label: 'College President (EN)',
+                        label: 'addCollege.management.collegePresidentEn'.tr(),
                         prefixIcon: Icons.person_2_outlined,
                       ),
                     ),
@@ -633,7 +809,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: studyingTypeController,
-                  label: 'Studying Type',
+                  label: 'addCollege.management.studyingType'.tr(),
                   prefixIcon: Icons.school,
                 ),
               ],
@@ -643,7 +819,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       ),
       Step(
         isActive: _currentStep >= 4,
-        title: const Text('Description'),
+        title: Text('addCollege.description.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -652,14 +828,14 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
               children: [
                 _buildTextField(
                   controller: descriptionArController,
-                  label: 'Description (AR)',
+                  label: 'addCollege.description.descriptionAr'.tr(),
                   prefixIcon: Icons.description,
                   maxLines: 3,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: descriptionEnController,
-                  label: 'Description (EN)',
+                  label: 'addCollege.description.descriptionEn'.tr(),
                   prefixIcon: Icons.description_outlined,
                   maxLines: 3,
                 ),
@@ -670,7 +846,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       ),
       Step(
         isActive: _currentStep >= 5,
-        title: const Text('Features'),
+        title: Text('addCollege.features.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -678,17 +854,17 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildDropdown(
-                    'Advantages (AR)', advantagesAr, availableAdvantagesAr),
+                _buildDropdown('addCollege.features.advantagesAr'.tr(),
+                    advantagesAr, availableAdvantagesAr),
                 const SizedBox(height: 16),
-                _buildDropdown(
-                    'Advantages (EN)', advantagesEn, availableAdvantagesEn),
+                _buildDropdown('addCollege.features.advantagesEn'.tr(),
+                    advantagesEn, availableAdvantagesEn),
                 const SizedBox(height: 16),
-                _buildDropdown('Disadvantages (AR)', disadvantagesAr,
-                    availableDisadvantagesAr),
+                _buildDropdown('addCollege.features.disadvantagesAr'.tr(),
+                    disadvantagesAr, availableDisadvantagesAr),
                 const SizedBox(height: 16),
-                _buildDropdown('Disadvantages (EN)', disadvantagesEn,
-                    availableDisadvantagesEn),
+                _buildDropdown('addCollege.features.disadvantagesEn'.tr(),
+                    disadvantagesEn, availableDisadvantagesEn),
                 const SizedBox(height: 16),
               ],
             ),
@@ -697,7 +873,7 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
       ),
       Step(
         isActive: _currentStep >= 6,
-        title: const Text('Location & Image'),
+        title: Text('addCollege.locationAndImage.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -705,17 +881,31 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildDropdown('Career Opportunities (AR)',
-                    careerOpportunitiesArList, availableCareerOpportunitiesAr),
+                _buildDropdown(
+                    'addCollege.locationAndImage.careerOpportunitiesAr'.tr(),
+                    careerOpportunitiesArList,
+                    availableCareerOpportunitiesAr),
                 const SizedBox(height: 16),
-                _buildDropdown('Career Opportunities (EN)',
-                    careerOpportunitiesEnList, availableCareerOpportunitiesEn),
+                _buildDropdown(
+                    'addCollege.locationAndImage.careerOpportunitiesEn'.tr(),
+                    careerOpportunitiesEnList,
+                    availableCareerOpportunitiesEn),
                 const SizedBox(height: 24),
                 _buildDropdown(
-                    'Expected Jobs (AR)', expectedJobsArList, expectedJobsAr),
+                    'addCollege.locationAndImage.expectedJobsAr'.tr(),
+                    expectedJobsArList,
+                    expectedJobsAr),
                 const SizedBox(height: 16),
                 _buildDropdown(
-                    'Expected Jobs (EN)', expectedJobsEnList, expectedJobsEn),
+                    'addCollege.locationAndImage.expectedJobsEn'.tr(),
+                    expectedJobsEnList,
+                    expectedJobsEn),
+                const SizedBox(height: 16),
+                _buildDropdown('addCollege.locationAndImage.fieldsEn'.tr(),
+                    fieldsEnList, fieldsEn),
+                const SizedBox(height: 16),
+                _buildDropdown('addCollege.locationAndImage.fieldsAr'.tr(),
+                    fieldsArList, fieldsAr),
                 const SizedBox(height: 24),
                 Center(
                   child: Column(
@@ -737,7 +927,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                           ElevatedButton.icon(
                             onPressed: _pickImage,
                             icon: const Icon(Icons.photo_library),
-                            label: const Text('Pick Image'),
+                            label: Text(
+                                'addCollege.locationAndImage.pickImage'.tr()),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 24,
@@ -749,7 +940,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                           ElevatedButton.icon(
                             onPressed: _uploadImage,
                             icon: const Icon(Icons.upload),
-                            label: const Text('Upload Image'),
+                            label: Text(
+                                'addCollege.locationAndImage.uploadImage'.tr()),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 24,
@@ -871,9 +1063,9 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Add College',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          'appbartitle'.tr(),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         elevation: 2,
@@ -925,6 +1117,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                   careerOpportunitiesArList.isNotEmpty &&
                   careerOpportunitiesEnList.isNotEmpty &&
                   expectedJobsArList.isNotEmpty &&
+                  fieldsArList.isNotEmpty &&
+                  fieldsEnList.isNotEmpty &&
                   expectedJobsEnList.isNotEmpty) {
                 // If all controllers have data, submit the data
                 CollegeModel data = CollegeModel(
@@ -946,6 +1140,8 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                   descriptionEn: descriptionEnController.text,
                   studyingType: studyingTypeController.text,
                   academicYear: numberOfAcademiesYearsController.text,
+                  fieldsAr: fieldsArList,
+                  fieldsEn: fieldsEnList,
                   advantagesAr: advantagesAr,
                   advantagesEn: advantagesEn,
                   disadvantagesAr: disadvantagesAr,
@@ -958,16 +1154,15 @@ class _AddCollegeScreenState extends State<AddCollegeScreen> {
                 );
                 AddCollegeBack.addCollegeData(data);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('University data submitted successfully!'),
+                  SnackBar(
+                    content: Text('addCollege.messages.success'.tr()),
                     backgroundColor: Colors.green,
                   ),
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content:
-                        Text('Please fill in all fields and upload an image.'),
+                  SnackBar(
+                    content: Text('addCollege.messages.error'.tr()),
                     backgroundColor: Colors.red,
                   ),
                 );

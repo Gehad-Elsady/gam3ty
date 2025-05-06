@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/add_uni_screen.dart';
 import 'package:gam3ty/Screens/Profile/profile-screen.dart';
+import 'package:gam3ty/Screens/add%20college/add_college.dart';
+import 'package:gam3ty/Screens/contact/contact-screen.dart';
 import 'package:gam3ty/Screens/home/widgets/categorey_part.dart';
 import 'package:gam3ty/Screens/uni%20profile/uni_profile.dart';
 import 'package:gam3ty/Screens/all_college_screem.dart';
@@ -20,6 +22,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = context.locale;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -79,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CollegeScreen(),
+                        builder: (context) => AddCollegeScreen(),
                       ));
                 },
                 child: Text(
@@ -106,7 +110,7 @@ class HomeScreen extends StatelessWidget {
               // ),
               TextButton(
                 onPressed: () {
-                  // Navigator.pushReplacementNamed(context, WellcomeScreen.routeName);
+                  Navigator.pushNamed(context, ContactScreen.routeName);
                 },
                 child: Text(
                   'contact-us'.tr(),
@@ -119,6 +123,16 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            if (currentLocale.languageCode == 'en') {
+              context.setLocale(const Locale("ar"));
+            } else {
+              context.setLocale(const Locale("en"));
+            }
+          },
+          icon: const Icon(Icons.g_translate_outlined),
         ),
       ),
       body: Container(

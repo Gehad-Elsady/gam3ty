@@ -47,7 +47,7 @@
   "national-universities":"National university",
   "institutes":"Institutes",
   "technology-university":"Technology University",
-  "all-universities":"All Universities",
+  "all-universities":"All Universities & Institutes",
   "uni-student":"University Student",
   "uni-member":"University Member",
   "uni-college":"University College",
@@ -108,10 +108,82 @@
   "got_it":"Got it!",
   "home":"Home",
   "contact-title":"We would love to hear from you!",
-"massage":"message",
-"apply":"Apply for University",
-"error":"Error",
-"error_massage":"You need to login to apply for uni"
-
+  "massage":"message",
+  "apply":"Apply for University",
+  "error":"Error",
+  "error_massage":"You need to login to apply for uni",
+ "appbartitle": "Add College",
+  "title": "Basic Information",
+  "university_id": "University ID",
+  "college_id": "College ID",
+  "college_name_ar": "College Name (Arabic)",
+  "college_name_en": "College Name (English)",
+  "establish_date": "Establishment Date",
+  "addCollege": {
+    "statistics": {
+      "title": "Statistics",
+      "tuitionFees": "Tuition Fees",
+      "acceptedPercentage": "Acceptance Rate",
+      "numberOfAcademicYears": "Number of Academic Years"
+    },
+    "contact": {
+      "title": "Contact Information",
+      "addressAr": "Address (Arabic)",
+      "addressEn": "Address (English)",
+      "contactNumber": "Contact Number",
+      "email": "Email Address",
+      "collegeWebsite": "College Website"
+    },
+    "management": {
+      "title": "Management",
+      "collegePresidentAr": "College President (Arabic)",
+      "collegePresidentEn": "College President (English)",
+      "studyingType": "Study Type"
+    },
+    "description": {
+      "title": "Description",
+      "descriptionAr": "Description (Arabic)",
+      "descriptionEn": "Description (English)"
+    },
+    "features": {
+      "title": "Features",
+      "advantagesAr": "Advantages (Arabic)",
+      "advantagesEn": "Advantages (English)",
+      "disadvantagesAr": "Disadvantages (Arabic)",
+      "disadvantagesEn": "Disadvantages (English)"
+    },
+    "locationAndImage": {
+      "title": "Location & Image",
+      "careerOpportunitiesAr": "Career Opportunities (Arabic)",
+      "careerOpportunitiesEn": "Career Opportunities (English)",
+      "expectedJobsAr": "Expected Jobs (Arabic)",
+      "expectedJobsEn": "Expected Jobs (English)",
+      "fieldsAr": "Fields (Arabic)",
+      "fieldsEn": "Fields (English)",
+      "pickImage": "Pick Image",
+      "uploadImage": "Upload Image"
+    },
+    "messages": {
+      "success": "College added successfully!",
+      "error": "Please fill in all required fields"
+    }
+  },
+  "uni_name_ar":"University Name (Arabic)",
+  "uni_name_en":"University Name (English)",
+  "uni_establish_date":"University Establishment Date",
+  "uni_type":"University Type",
+  "uni_college_number":"Number of Colleges",
+  "uni_number_of_students":"Number of Students",
+  "uni_number_of_teachers":"Number of Teachers",
+  "uni_accepted_percentage":"University Acceptance Percentage",
+  "uni_president_ar":"University President (Arabic)",
+  "uni_president_en":"University President (English)",
+  "uni_studying_type":"University Study Type",
+  "allowed_city_ar":"Allowed Cities (Arabic)",
+  "allowed_city_en":"Allowed Cities (English)",
+  "add_uni":"Add University",
+  "wait":"We will add it soon 🔜",
+  "universityies":"Universities & Institutes",
+  "fields":"Specialties and Departments"
 
 }

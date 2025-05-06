@@ -20,6 +20,8 @@ class CollegeModel {
   String Tuitionfees; //
   List<String> advantagesAr;
   List<String> advantagesEn; //
+  List<String> fieldsAr;
+  List<String> fieldsEn; //
   List<String> disadvantagesAr;
   List<String> disadvantagesEn; //
   List<String> careerOpportunitiesArList;
@@ -47,6 +49,8 @@ class CollegeModel {
     required this.studyingType,
     required this.academicYear,
     required this.Tuitionfees,
+    required this.fieldsAr,
+    required this.fieldsEn,
     required this.advantagesAr,
     required this.advantagesEn,
     required this.disadvantagesAr,
@@ -77,6 +81,8 @@ class CollegeModel {
         studyingType: json['studyingType'],
         academicYear: json['academicYear'],
         Tuitionfees: json['Tuitionfees'],
+        fieldsAr: List<String>.from(json['fieldsAr']),
+        fieldsEn: List<String>.from(json['fieldsEn']),
         advantagesAr: List<String>.from(json['advantagesAr']),
         advantagesEn: List<String>.from(json['advantagesEn']),
         disadvantagesAr: List<String>.from(json['disadvantagesAr']),
@@ -110,6 +116,8 @@ class CollegeModel {
       'establishDate': establishDate,
       'academicYear': academicYear,
       'Tuitionfees': Tuitionfees,
+      'fieldsAr': fieldsAr,
+      'fieldsEn': fieldsEn,
       'advantagesAr': advantagesAr,
       'advantagesEn': advantagesEn,
       'disadvantagesAr': disadvantagesAr,

@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gam3ty/Screens/Add%20uin/college_part.dart';
 import 'package:gam3ty/Screens/Add%20uin/model/add_uin_model.dart';
+import 'package:gam3ty/Screens/Auth/login/login-screen.dart';
 import 'package:gam3ty/Screens/add%20college/add_college.dart';
 import 'package:gam3ty/Screens/add%20college/model/college_model.dart';
+import 'package:gam3ty/Screens/payment-scree.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,6 +27,60 @@ class _CollegeInfoState extends State<CollegeInfo> {
     Locale currentLocale = context.locale;
 
     return Scaffold(
+      floatingActionButton: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(color: Colors.black),
+          ),
+        ),
+        onPressed: () {
+          if (FirebaseAuth.instance.currentUser != null) {
+            int price = (int.parse(model.Tuitionfees) * 0.3).toInt();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PaymentScreen(totalPrice: price),
+              ),
+            );
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('error'.tr()),
+                content: Text('error_massage'.tr()),
+                actions: [
+                  TextButton(
+                      child: Text('login'.tr()),
+                      onPressed: () {
+                        Navigator.pushNamed(context, LoginScreen.routeName);
+                      }),
+                  TextButton(
+                    child: Text('cancel'.tr()),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            );
+          }
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('apply'.tr(),
+                style: GoogleFonts.domine(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                )),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text(
           currentLocale.languageCode == 'en' ? model.nameEn : model.nameAr,
@@ -351,6 +408,28 @@ class _CollegeInfoState extends State<CollegeInfo> {
                                     "• $item") // Add bullet point before each item
                                 .join("\n")
                             : model.careerOpportunitiesArList
+                                .map((item) => "• $item")
+                                .join("\n"), // Join each item with a newline
+                        style: GoogleFonts.domine(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold, // Bold for the items
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text("fields".tr(),
+                          style: GoogleFonts.domine(
+                            fontSize: 25,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold, // Bold for the label
+                          )),
+                      Text(
+                        currentLocale.languageCode == 'en'
+                            ? model.fieldsEn
+                                .map((item) =>
+                                    "• $item") // Add bullet point before each item
+                                .join("\n")
+                            : model.fieldsAr
                                 .map((item) => "• $item")
                                 .join("\n"), // Join each item with a newline
                         style: GoogleFonts.domine(

@@ -26,6 +26,7 @@ class _ThirdPartState extends State<ThirdPart> {
       "assets/images/ImageHandler (2).png",
       "assets/images/ImageHandler (3).png",
       "assets/images/AU+REC+logos+-+2022-03-30T152444.942.png",
+      "assets/images/333.png"
     ];
 
     return Container(

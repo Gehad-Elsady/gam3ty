@@ -152,36 +152,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ],
                             ),
                             SizedBox(height: 40),
-                            role == "University"
-                                ? DropdownButton(
-                                    items: [
-                                      DropdownMenuItem(
-                                        child: Text("Select Role"),
-                                        value: null,
-                                      ),
-                                      DropdownMenuItem(
-                                          child: Text("Teacher"),
-                                          value: "Teacher"),
-                                      DropdownMenuItem(
-                                          child: Text("Teacher"),
-                                          value: "Teacher"),
-                                      DropdownMenuItem(
-                                          child: Text("Teacher"),
-                                          value: "Teacher"),
-                                      DropdownMenuItem(
-                                          child: Text("Teacher"),
-                                          value: "Teacher"),
-                                      DropdownMenuItem(
-                                          child: Text("Teacher"),
-                                          value: "Teacher"),
-                                      DropdownMenuItem(
-                                          child: Text("Teacher"),
-                                          value: "Teacher"),
-                                    ],
-                                    onChanged: (value) {},
-                                  )
-                                : SizedBox(),
-                            // Name Field
+                            // role == "University"
+                            //     ? DropdownButton(
+                            //         items: [
+                            //           DropdownMenuItem(
+                            //             child: Text("Select Role"),
+                            //             value: null,
+                            //           ),
+                            //           DropdownMenuItem(
+                            //               child: Text("Teacher"),
+                            //               value: "Teacher"),
+                            //           DropdownMenuItem(
+                            //               child: Text("Teacher"),
+                            //               value: "Teacher"),
+                            //           DropdownMenuItem(
+                            //               child: Text("Teacher"),
+                            //               value: "Teacher"),
+                            //           DropdownMenuItem(
+                            //               child: Text("Teacher"),
+                            //               value: "Teacher"),
+                            //           DropdownMenuItem(
+                            //               child: Text("Teacher"),
+                            //               value: "Teacher"),
+                            //           DropdownMenuItem(
+                            //               child: Text("Teacher"),
+                            //               value: "Teacher"),
+                            //         ],
+                            //         onChanged: (value) {},
+                            //       )
+                            //     : SizedBox(),
+                            // // Name Field
                             _buildInputField(
                               controller: _usernameController,
                               label: 'name'.tr(),

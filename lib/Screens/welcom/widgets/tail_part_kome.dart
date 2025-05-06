@@ -50,7 +50,7 @@ class TailPart extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("We will add it soon 🔜"),
+                              title: Text('wait'.tr()),
                             ),
                           );
                         },
@@ -74,7 +74,7 @@ class TailPart extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("We will add it soon 🔜"),
+                              title: Text('wait'.tr()),
                             ),
                           );
                         },
@@ -98,7 +98,7 @@ class TailPart extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("We will add it soon 🔜"),
+                              title: Text('wait'.tr()),
                             ),
                           );
                         },
@@ -122,7 +122,7 @@ class TailPart extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("We will add it soon 🔜"),
+                              title: Text('wait'.tr()),
                             ),
                           );
                         },

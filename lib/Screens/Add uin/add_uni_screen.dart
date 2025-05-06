@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -358,7 +359,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
     return [
       Step(
         isActive: _currentStep >= 0,
-        title: const Text('Basic Info'),
+        title: Text('title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -367,7 +368,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
               children: [
                 _buildTextField(
                   controller: idController,
-                  label: 'University ID',
+                  label: 'university_id'.tr(),
                   prefixIcon: Icons.numbers,
                 ),
                 const SizedBox(height: 16),
@@ -376,7 +377,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: uinNameArController,
-                        label: 'University Name (AR)',
+                        label: 'uni_name_ar'.tr(),
                         prefixIcon: Icons.school,
                       ),
                     ),
@@ -384,7 +385,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: uinNameEnController,
-                        label: 'University Name (EN)',
+                        label: 'uni_name_en'.tr(),
                         prefixIcon: Icons.school_outlined,
                       ),
                     ),
@@ -393,11 +394,11 @@ class _AddUniScreenState extends State<AddUniScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: establishDateController,
-                  label: 'Establish Date',
+                  label: 'uni_establish_date'.tr(),
                   prefixIcon: Icons.calendar_today,
                 ),
                 const SizedBox(height: 16),
-                _buildDropdownField('University Type', uniType, selectedUniType,
+                _buildDropdownField('uni_type'.tr(), uniType, selectedUniType,
                     (value) => setState(() => selectedUniType = value)),
               ],
             ),
@@ -406,7 +407,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
       ),
       Step(
         isActive: _currentStep >= 1,
-        title: const Text('Statistics'),
+        title: Text('addCollege.statistics.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -418,7 +419,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: numberOfCollegesController,
-                        label: 'Number of Colleges',
+                        label: 'uni_college_number'.tr(),
                         prefixIcon: Icons.account_balance,
                         keyboardType: TextInputType.number,
                       ),
@@ -427,7 +428,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: numberOfStudentsController,
-                        label: 'Number of Students',
+                        label: 'uni_number_of_students'.tr(),
                         prefixIcon: Icons.people,
                         keyboardType: TextInputType.number,
                       ),
@@ -437,14 +438,14 @@ class _AddUniScreenState extends State<AddUniScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: numberOfTeachersController,
-                  label: 'Number of Teachers',
+                  label: 'uni_number_of_teachers'.tr(),
                   prefixIcon: Icons.person,
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: acceptedPercentageController,
-                  label: 'Accepted Percentage',
+                  label: 'uni_accepted_percentage'.tr(),
                   prefixIcon: Icons.percent,
                   keyboardType: TextInputType.number,
                 ),
@@ -455,7 +456,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
       ),
       Step(
         isActive: _currentStep >= 2,
-        title: const Text('Contact'),
+        title: Text('addCollege.contact.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -467,7 +468,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: addressArController,
-                        label: 'Address (AR)',
+                        label: 'addCollege.contact.addressAr'.tr(),
                         prefixIcon: Icons.location_on,
                       ),
                     ),
@@ -475,7 +476,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: addressEnController,
-                        label: 'Address (EN)',
+                        label: 'addCollege.contact.addressEn'.tr(),
                         prefixIcon: Icons.location_on_outlined,
                       ),
                     ),
@@ -484,21 +485,21 @@ class _AddUniScreenState extends State<AddUniScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: contactNumberController,
-                  label: 'Contact Number',
+                  label: 'addCollege.contact.contactNumber'.tr(),
                   prefixIcon: Icons.phone,
                   keyboardType: TextInputType.phone,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: emailController,
-                  label: 'Email',
+                  label: 'addCollege.contact.email'.tr(),
                   prefixIcon: Icons.email,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: uniLinkController,
-                  label: 'University Website',
+                  label: 'uni-website'.tr(),
                   prefixIcon: Icons.link,
                   keyboardType: TextInputType.url,
                 ),
@@ -509,7 +510,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
       ),
       Step(
         isActive: _currentStep >= 3,
-        title: const Text('Management'),
+        title: Text('addCollege.management.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -521,7 +522,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: universityPresidentArController,
-                        label: 'University President (AR)',
+                        label: 'uni_president_ar'.tr(),
                         prefixIcon: Icons.person_2,
                       ),
                     ),
@@ -529,7 +530,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: universityPresidentEnController,
-                        label: 'University President (EN)',
+                        label: 'uni_president_en'.tr(),
                         prefixIcon: Icons.person_2_outlined,
                       ),
                     ),
@@ -538,7 +539,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: studyingTypeController,
-                  label: 'Studying Type',
+                  label: 'uni_studying_type'.tr(),
                   prefixIcon: Icons.school,
                 ),
               ],
@@ -548,7 +549,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
       ),
       Step(
         isActive: _currentStep >= 4,
-        title: const Text('Description'),
+        title: Text('addCollege.description.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -557,14 +558,14 @@ class _AddUniScreenState extends State<AddUniScreen> {
               children: [
                 _buildTextField(
                   controller: descriptionArController,
-                  label: 'Description (AR)',
+                  label: 'addCollege.description.descriptionAr'.tr(),
                   prefixIcon: Icons.description,
                   maxLines: 3,
                 ),
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: descriptionEnController,
-                  label: 'Description (EN)',
+                  label: 'addCollege.description.descriptionEn'.tr(),
                   prefixIcon: Icons.description_outlined,
                   maxLines: 3,
                 ),
@@ -575,7 +576,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
       ),
       Step(
         isActive: _currentStep >= 5,
-        title: const Text('Features'),
+        title: Text('addCollege.features.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -583,17 +584,17 @@ class _AddUniScreenState extends State<AddUniScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildDropdown(
-                    'Advantages (AR)', advantagesAr, availableAdvantagesAr),
+                _buildDropdown('addCollege.features.advantagesAr'.tr(),
+                    advantagesAr, availableAdvantagesAr),
                 const SizedBox(height: 16),
-                _buildDropdown(
-                    'Advantages (EN)', advantagesEn, availableAdvantagesEn),
+                _buildDropdown('addCollege.features.advantagesEn'.tr(),
+                    advantagesEn, availableAdvantagesEn),
                 const SizedBox(height: 16),
-                _buildDropdown('Disadvantages (AR)', disadvantagesAr,
-                    availableDisadvantagesAr),
+                _buildDropdown('addCollege.features.disadvantagesAr'.tr(),
+                    disadvantagesAr, availableDisadvantagesAr),
                 const SizedBox(height: 16),
-                _buildDropdown('Disadvantages (EN)', disadvantagesEn,
-                    availableDisadvantagesEn),
+                _buildDropdown('addCollege.features.disadvantagesEn'.tr(),
+                    disadvantagesEn, availableDisadvantagesEn),
                 const SizedBox(height: 16),
               ],
             ),
@@ -602,7 +603,7 @@ class _AddUniScreenState extends State<AddUniScreen> {
       ),
       Step(
         isActive: _currentStep >= 6,
-        title: const Text('Location & Image'),
+        title: Text('addCollege.locationAndImage.title'.tr()),
         content: Card(
           elevation: 2,
           child: Padding(
@@ -611,10 +612,10 @@ class _AddUniScreenState extends State<AddUniScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildDropdown(
-                    'Allowed Cities (AR)', allowCitiesAr, availableCitiesAr),
+                    'allowed_city_ar'.tr(), allowCitiesAr, availableCitiesAr),
                 const SizedBox(height: 16),
                 _buildDropdown(
-                    'Allowed Cities (EN)', allowCitiesEn, availableCitiesEn),
+                    'allowed_city_en'.tr(), allowCitiesEn, availableCitiesEn),
                 const SizedBox(height: 24),
                 Center(
                   child: Column(
@@ -636,7 +637,8 @@ class _AddUniScreenState extends State<AddUniScreen> {
                           ElevatedButton.icon(
                             onPressed: _pickImage,
                             icon: const Icon(Icons.photo_library),
-                            label: const Text('Pick Image'),
+                            label: Text(
+                                'addCollege.locationAndImage.pickImage'.tr()),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 24,
@@ -648,7 +650,8 @@ class _AddUniScreenState extends State<AddUniScreen> {
                           ElevatedButton.icon(
                             onPressed: _uploadImage,
                             icon: const Icon(Icons.upload),
-                            label: const Text('Upload Image'),
+                            label: Text(
+                                'addCollege.locationAndImage.uploadImage'.tr()),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 24,
@@ -770,8 +773,8 @@ class _AddUniScreenState extends State<AddUniScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Add University',
+        title: Text(
+          'add_uni'.tr(),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,

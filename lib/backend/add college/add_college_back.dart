@@ -50,6 +50,8 @@ class AddCollegeBack {
           descriptionAr: data['descriptionAr'] ?? 'No Name',
           descriptionEn: data['descriptionEn'] ?? 'No Name',
           studyingType: data['studyingType'] ?? 'No Name',
+          fieldsAr: List<String>.from(data['fieldsAr'] ?? []),
+          fieldsEn: List<String>.from(data['fieldsEn'] ?? []),
           advantagesAr: List<String>.from(data['advantagesAr'] ?? []),
           advantagesEn: List<String>.from(data['advantagesEn'] ?? []),
           disadvantagesAr: List<String>.from(data['disadvantagesAr'] ?? []),
@@ -92,6 +94,8 @@ class AddCollegeBack {
           studyingType: data['studyingType'] ?? 'No Name',
           advantagesAr: List<String>.from(data['advantagesAr'] ?? []),
           advantagesEn: List<String>.from(data['advantagesEn'] ?? []),
+          fieldsAr: List<String>.from(data['fieldsAr'] ?? []),
+          fieldsEn: List<String>.from(data['fieldsEn'] ?? []),
           disadvantagesAr: List<String>.from(data['disadvantagesAr'] ?? []),
           disadvantagesEn: List<String>.from(data['disadvantagesEn'] ?? []),
           careerOpportunitiesArList:

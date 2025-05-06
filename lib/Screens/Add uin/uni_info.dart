@@ -28,60 +28,6 @@ class _UniInfoState extends State<UniInfo> {
     var model = ModalRoute.of(context)?.settings.arguments as AddUinModel;
     Locale currentLocale = context.locale;
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-            side: BorderSide(color: Colors.black),
-          ),
-        ),
-        onPressed: () {
-          if (FirebaseAuth.instance.currentUser != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    PaymentScreen(totalPrice: int.parse(model.filePrice)),
-              ),
-            );
-          } else {
-            showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('error'.tr()),
-                content: Text('error_massage'.tr()),
-                actions: [
-                  TextButton(
-                      child: Text('login'.tr()),
-                      onPressed: () {
-                        Navigator.pushNamed(context, LoginScreen.routeName);
-                      }),
-                  TextButton(
-                    child: Text('cancel'.tr()),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            );
-          }
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('apply'.tr(),
-                style: GoogleFonts.domine(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                )),
-          ],
-        ),
-      ),
       appBar: AppBar(
         title: Text(
           currentLocale.languageCode == 'en'
