@@ -15,15 +15,42 @@ class CategoryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text(category,
-            style: GoogleFonts.domine(
-              fontSize: 32,
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            )),
-      ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          title: category == 'Government universities'
+              ? Text("government-universities".tr(),
+                  style: GoogleFonts.domine(
+                    fontSize: 32,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ))
+              : category == 'Private universities'
+                  ? Text("private-universities".tr(),
+                      style: GoogleFonts.domine(
+                        fontSize: 32,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ))
+                  : category == 'national university'
+                      ? Text("national-universities".tr(),
+                          style: GoogleFonts.domine(
+                            fontSize: 32,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ))
+                      : category == 'Institutes'
+                          ? Text("institutes".tr(),
+                              style: GoogleFonts.domine(
+                                fontSize: 32,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ))
+                          : Text("all-universities".tr(),
+                              style: GoogleFonts.domine(
+                                fontSize: 32,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ))),
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(

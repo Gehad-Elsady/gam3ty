@@ -29,68 +29,62 @@ class _CollegeInfoState extends State<CollegeInfo> {
 
     return Scaffold(
       floatingActionButton: FutureBuilder(
-          future: AuthFunctions.readUserData(),
-          builder: (context, snapshot) {
-            return snapshot.data!.role == 'Student'
-                ? ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        side: BorderSide(color: Colors.black),
-                      ),
+        future: AuthFunctions.readUserData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SizedBox(); // Avoid using Center here
+          }
+
+          if (snapshot.hasData && snapshot.data!.role == 'Student') {
+            return FloatingActionButton.extended(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                if (FirebaseAuth.instance.currentUser != null) {
+                  int price = (int.parse(model.Tuitionfees) * 0.3).toInt();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentScreen(totalPrice: price),
                     ),
-                    onPressed: () {
-                      if (FirebaseAuth.instance.currentUser != null) {
-                        int price =
-                            (int.parse(model.Tuitionfees) * 0.3).toInt();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                PaymentScreen(totalPrice: price),
-                          ),
-                        );
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text('error'.tr()),
-                            content: Text('error_massage'.tr()),
-                            actions: [
-                              TextButton(
-                                  child: Text('login'.tr()),
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, LoginScreen.routeName);
-                                  }),
-                              TextButton(
-                                child: Text('cancel'.tr()),
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('apply'.tr(),
-                            style: GoogleFonts.domine(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            )),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('error'.tr()),
+                      content: Text('error_massage'.tr()),
+                      actions: [
+                        TextButton(
+                          child: Text('login'.tr()),
+                          onPressed: () {
+                            Navigator.pushNamed(context, LoginScreen.routeName);
+                          },
+                        ),
+                        TextButton(
+                          child: Text('cancel'.tr()),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
                       ],
                     ),
-                  )
-                : SizedBox();
-          }),
+                  );
+                }
+              },
+              label: Text(
+                'apply'.tr(),
+                style: GoogleFonts.domine(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
+          }
+
+          return const SizedBox();
+        },
+      ),
       appBar: AppBar(
         title: Text(
           currentLocale.languageCode == 'en' ? model.nameEn : model.nameAr,
