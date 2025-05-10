@@ -32,10 +32,14 @@ class _CollegeInfoState extends State<CollegeInfo> {
         future: AuthFunctions.readUserData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const SizedBox(); // Avoid using Center here
+            return const SizedBox(); // Show nothing while loading
           }
 
-          if (snapshot.hasData && snapshot.data!.role == 'Student') {
+          // Show the button if:
+          // 1. The user is a student
+          // 2. OR there is no user data (e.g., not logged in)
+          if ((snapshot.hasData && snapshot.data!.role == 'Student') ||
+              !snapshot.hasData) {
             return FloatingActionButton.extended(
               backgroundColor: Colors.red,
               onPressed: () {
@@ -82,7 +86,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
             );
           }
 
-          return const SizedBox();
+          return const SizedBox(); // Don't show for other roles
         },
       ),
       appBar: AppBar(
