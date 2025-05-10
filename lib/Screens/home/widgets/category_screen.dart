@@ -45,7 +45,7 @@ class CategoryScreen extends StatelessWidget {
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                               ))
-                          : Text("all-universities".tr(),
+                          : Text("technology-university".tr(),
                               style: GoogleFonts.domine(
                                 fontSize: 32,
                                 color: Colors.black,
