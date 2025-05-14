@@ -127,6 +127,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                   // Container for the Image
                   Container(
                     height: 500,
+                    width: 500,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -136,7 +137,7 @@ class _CollegeInfoState extends State<CollegeInfo> {
                           BorderRadius.circular(20), // Ensure matching radius
                       child: Image.network(
                         model.image,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   )

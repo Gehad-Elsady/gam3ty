@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
                 child: Text(
-                  'universityies'.tr(),
+                  'add-uni'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                       ));
                 },
                 child: Text(
-                  'colleges'.tr(),
+                  'add-college'.tr(),
                   style: GoogleFonts.domine(
                     fontSize: 20,
                     color: Colors.black,
